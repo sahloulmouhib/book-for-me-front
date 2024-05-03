@@ -3,6 +3,7 @@ import {
   NoAccountTitleStyle,
   StyledFormContainer,
   StyledPageContainer,
+  StyledPageSubtitle,
   StyledPageTittle,
   StyledRowContainer,
   StyledSignUpContainer,
@@ -12,28 +13,66 @@ import CustomButton from "components/CustomButton/CustomButton";
 import CustomIconButton from "components/CustomIconButton/CustomIconButton";
 import CustomTextFieldInput from "components/CustomTextField/CustomTextField";
 import OrDivider from "../OrDivider/OrDivider";
+import { FieldErrors, UseFormRegister } from "react-hook-form";
+import { SignInSchemaType } from "features/auth/forms/signIn.formConfig";
+import { translate } from "locales/i18n";
+import { Stack } from "@mui/material";
 
-interface SignInFormProps {}
+interface SignInFormProps {
+  register: UseFormRegister<SignInSchemaType>;
+  errors: FieldErrors<SignInSchemaType>;
+  isValid: boolean;
+  onSubmit: () => void;
+}
 
-export const SignInForm: React.FC<SignInFormProps> = () => {
+export const SignInForm: React.FC<SignInFormProps> = ({
+  register,
+  errors,
+  isValid,
+  onSubmit,
+}) => {
   return (
     <StyledPageContainer>
-      <StyledPageTittle>Sign in to your account</StyledPageTittle>
+      <Stack>
+        <StyledPageTittle>{translate("auth.sign_in.title")}</StyledPageTittle>
+        <StyledPageSubtitle>
+          {translate("auth.sign_in.subtitle")}
+        </StyledPageSubtitle>
+      </Stack>
+
       <CustomIconButton
         icon={"GOOGLE_ICON"}
-        title="Sign in with Google"
+        title={translate("auth.sign_in.sign_in_with_google")}
         onClick={() => {}}
       />
       <OrDivider />
       <StyledRowContainer>
-        <CustomTextFieldInput label="Email" placeholder="Email" />
-        <CustomTextFieldInput label="Password" placeholder="Password" />
+        <CustomTextFieldInput
+          label={translate("auth.sign_in.email")}
+          placeholder={translate("auth.sign_in.email")}
+          register={register("email")}
+          errorMessage={errors.email?.message}
+        />
+        <CustomTextFieldInput
+          label={translate("auth.sign_in.password")}
+          placeholder={translate("auth.sign_in.password")}
+          register={register("password")}
+          isPassword
+          errorMessage={errors.password?.message}
+        />
       </StyledRowContainer>
       <StyledFormContainer>
-        <CustomButton title="Sign in" onClick={() => {}} />
+        <CustomButton
+          isDisabled={!isValid}
+          title={translate("auth.sign_in.sign_in")}
+          onClick={onSubmit}
+        />
         <StyledSignUpContainer>
           <NoAccountTitleStyle>Don't have an account?</NoAccountTitleStyle>
-          <CustomBorderlessButton title="Sign up" onClick={() => {}} />
+          <CustomBorderlessButton
+            title={translate("auth.sign_in.sign_up")}
+            onClick={() => {}}
+          />
         </StyledSignUpContainer>
       </StyledFormContainer>
     </StyledPageContainer>

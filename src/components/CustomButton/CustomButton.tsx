@@ -4,11 +4,16 @@ import { StyledRoot } from "./customButton.styles";
 interface CustomButtonProps {
   onClick: () => void;
   title: string;
+  isDisabled?: boolean;
 }
 
-const CustomButton: React.FC<CustomButtonProps> = ({ onClick, title }) => {
+const CustomButton: React.FC<CustomButtonProps> = ({
+  onClick,
+  title,
+  isDisabled,
+}) => {
   return (
-    <StyledRoot onClick={onClick} variant="contained">
+    <StyledRoot onClick={onClick} disabled={isDisabled} variant="contained">
       {title}
     </StyledRoot>
   );

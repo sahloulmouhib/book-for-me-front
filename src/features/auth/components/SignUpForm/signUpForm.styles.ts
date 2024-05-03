@@ -41,3 +41,10 @@ export const StyledPageSubtitle = styled(Typography)(({ theme }) => ({
   color: theme.palette.grey[700],
   paddingBottom: distance.M,
 }));
+
+export const StyledNameContainer = styled(Stack)(() => ({
+  gap: distance.L,
+  flexDirection: "row",
+  justifyContent: "space-between",
+  width: "100%",
+}));

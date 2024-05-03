@@ -4,25 +4,25 @@ import {
   StyledCoverImageContainer,
   StyledCoverImageSubtitleText,
   StyledCoverImageTitleText,
-} from "./signInCover.styles";
+} from "./signUpCover.styles";
 import { Stack } from "@mui/material";
 import { images } from "utils/images";
 import { translate } from "locales/i18n";
 
-interface SignInCoverProps {}
+interface SignUpCoverProps {}
 
-export const SignInCover: React.FC<SignInCoverProps> = () => {
+export const SignUpCover: React.FC<SignUpCoverProps> = () => {
   return (
     <StyledCoverImageContainer>
       <Stack>
         <StyledCoverImageTitleText>
-          {translate("auth.sign_in.welcome_back")}
+          {translate("auth.sign_up.make_bookings")}
         </StyledCoverImageTitleText>
         <StyledCoverImageSubtitleText>
-          {translate("auth.sign_in.sign_in_now")}
+          {translate("auth.sign_up.start_journey")}
         </StyledCoverImageSubtitleText>
       </Stack>
-      <StyledCoverImage src={images.DATES_COVER} />
+      <StyledCoverImage src={images.OPEN_DOOR} />
     </StyledCoverImageContainer>
   );
 };

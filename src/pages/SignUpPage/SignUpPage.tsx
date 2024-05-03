@@ -1,19 +1,19 @@
 import React from "react";
-import { StyledContainer } from "./signInPage.styles";
-import { SignInCover } from "features/auth/components/SignInCover/SignInCover";
-import { SignInForm } from "features/auth/components/SignInForm/SignInFrom";
+import { StyledContainer } from "./signUpPage.styles";
+import { SignUpCover } from "features/auth/components/SignUpCover/SignUpCover";
 import { zodResolver } from "@hookform/resolvers/zod";
-import {
-  signInDefaultValues,
-  signInSchema,
-} from "features/auth/forms/signIn.formConfig";
 import { useForm } from "react-hook-form";
+import { SignUpForm } from "features/auth/components/SignUpForm/SignUpForm";
+import {
+  signUpDefaultValues,
+  signUpSchema,
+} from "features/auth/forms/signUp.formConfig";
 
-const SignInPage: React.FC = () => {
+const SignUpPage: React.FC = () => {
   const { register, formState, handleSubmit } = useForm({
     mode: "onChange",
-    defaultValues: signInDefaultValues,
-    resolver: zodResolver(signInSchema),
+    defaultValues: signUpDefaultValues,
+    resolver: zodResolver(signUpSchema),
   });
   const { errors, isValid } = formState;
 
@@ -25,8 +25,8 @@ const SignInPage: React.FC = () => {
 
   return (
     <StyledContainer>
-      <SignInCover />
-      <SignInForm
+      <SignUpCover />
+      <SignUpForm
         register={register}
         errors={errors}
         isValid={isValid}
@@ -36,4 +36,4 @@ const SignInPage: React.FC = () => {
   );
 };
 
-export default SignInPage;
+export default SignUpPage;

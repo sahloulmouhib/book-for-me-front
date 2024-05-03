@@ -10,7 +10,8 @@ export const StyledCoverImageContainer = styled(Stack)(({ theme }) => ({
 }));
 
 export const StyledCoverImage = styled("img")(() => ({
-  width: "100%",
+  width: "80%",
+  alignSelf: "center",
 }));
 
 export const StyledCoverImageTitleText = styled(Typography)(({ theme }) => ({

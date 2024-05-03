@@ -5,7 +5,6 @@ export const StyledRoot = styled(Button)(({ theme }) => ({
   width: BOX_WIDTH,
   textAlign: "center",
   backgroundColor: theme.palette.primary.main,
-
   textTransform: "none",
   borderRadius: borderRadius.S,
   fontSize: fontSize.M,
