@@ -3,12 +3,12 @@ import {
   MAX_STRING_LENGTH,
   MIN_STRING_LENGTH,
   MIN_STRING_REQUIRED_LENGTH,
-} from "constants";
+} from "utils/constants";
 import { translate } from "locales/i18n";
 import { z } from "zod";
-import { PASSWORD_REGEX, userSignUprValidation } from "../utils/auth.constants";
+import { PASSWORD_REGEX, signUpValidation } from "../utils/auth.constants";
 
-export const userSignUpSchema = z
+export const signUpSchema = z
   .object({
     firstName: z
       .string()
@@ -81,27 +81,27 @@ export const userSignUpSchema = z
         })
       )
       .min(
-        userSignUprValidation.password.MIN_LENGTH,
+        signUpValidation.password.MIN_LENGTH,
         translate("validation.string.min", {
           field: translate("auth.sign_up.password"),
-          min: userSignUprValidation.password.MIN_LENGTH,
+          min: signUpValidation.password.MIN_LENGTH,
         })
       )
       .max(
-        userSignUprValidation.password.MAX_LENGTH,
+        signUpValidation.password.MAX_LENGTH,
         translate("validation.string.max", {
           field: translate("auth.sign_up.password"),
-          max: userSignUprValidation.password.MAX_LENGTH,
+          max: signUpValidation.password.MAX_LENGTH,
         })
       )
       .regex(
         PASSWORD_REGEX,
         translate("validation.password.regex", {
           field: translate("auth.sign_up.password"),
-          uppercase: userSignUprValidation.password.MIN_UPPERCASE,
-          lowercase: userSignUprValidation.password.MIN_LOWERCASE,
-          number: userSignUprValidation.password.MIN_NUMBERS,
-          special: userSignUprValidation.password.MIN_SYMBOLS,
+          uppercase: signUpValidation.password.MIN_UPPERCASE,
+          lowercase: signUpValidation.password.MIN_LOWERCASE,
+          number: signUpValidation.password.MIN_NUMBERS,
+          special: signUpValidation.password.MIN_SYMBOLS,
         })
       ),
     confirmPassword: z
@@ -114,27 +114,27 @@ export const userSignUpSchema = z
         })
       )
       .min(
-        userSignUprValidation.password.MIN_LENGTH,
+        signUpValidation.password.MIN_LENGTH,
         translate("validation.string.min", {
           field: translate("auth.sign_up.confirm_password"),
-          min: userSignUprValidation.password.MIN_LENGTH,
+          min: signUpValidation.password.MIN_LENGTH,
         })
       )
       .max(
-        userSignUprValidation.password.MAX_LENGTH,
+        signUpValidation.password.MAX_LENGTH,
         translate("validation.string.max", {
           field: translate("auth.sign_up.confirm_password"),
-          length: userSignUprValidation.password.MAX_LENGTH,
+          length: signUpValidation.password.MAX_LENGTH,
         })
       )
       .regex(
         PASSWORD_REGEX,
         translate("validation.password.regex", {
           field: translate("auth.sign_up.confirm_password"),
-          uppercase: userSignUprValidation.password.MIN_UPPERCASE,
-          lowercase: userSignUprValidation.password.MIN_LOWERCASE,
-          number: userSignUprValidation.password.MIN_NUMBERS,
-          special: userSignUprValidation.password.MIN_SYMBOLS,
+          uppercase: signUpValidation.password.MIN_UPPERCASE,
+          lowercase: signUpValidation.password.MIN_LOWERCASE,
+          number: signUpValidation.password.MIN_NUMBERS,
+          special: signUpValidation.password.MIN_SYMBOLS,
         })
       ),
     hasAgreedToTerms: z.boolean().refine(
@@ -149,9 +149,9 @@ export const userSignUpSchema = z
     path: ["confirm_password"],
   });
 
-export type UserSignUpSchemaType = z.infer<typeof userSignUpSchema>;
+export type signUpSchemaType = z.infer<typeof signUpSchema>;
 
-export const userSignUpDefaultValues: UserSignUpSchemaType = {
+export const userSignUpDefaultValues: signUpSchemaType = {
   firstName: "",
   lastName: "",
   email: "",

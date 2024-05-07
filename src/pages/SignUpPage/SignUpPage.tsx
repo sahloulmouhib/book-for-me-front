@@ -5,12 +5,12 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { SignUpForm } from "features/auth/components/SignUpForm/SignUpForm";
 import {
-  UserSignUpSchemaType,
+  signUpSchemaType,
   userSignUpDefaultValues,
-  userSignUpSchema,
+  signUpSchema,
 } from "features/auth/forms/auth.signUpFormConfig";
 import { useMutation } from "@tanstack/react-query";
-import { signUpUserMutationFn } from "features/auth/api/auth.api";
+import { signUpMutationFn } from "features/auth/api/auth.api";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { AxiosError } from "axios";
@@ -21,18 +21,19 @@ import { useGlobalStore } from "store/global.store";
 const SignUpPage: React.FC = () => {
   const { showLoader, hideLoader, setUserAndAccessToken } = useGlobalStore();
   const navigate = useNavigate();
+
   const { mutateAsync: signUpUserApi, isPending } = useMutation({
-    mutationFn: signUpUserMutationFn,
+    mutationFn: signUpMutationFn,
   });
 
   const { register, formState, handleSubmit } = useForm({
     mode: "onChange",
     defaultValues: userSignUpDefaultValues,
-    resolver: zodResolver(userSignUpSchema),
+    resolver: zodResolver(signUpSchema),
   });
   const { errors, isValid } = formState;
 
-  const handleSignUp = async (data: UserSignUpSchemaType) => {
+  const handleSignUp = async (data: signUpSchemaType) => {
     try {
       const { accessToken, user } = await signUpUserApi(data);
       setUserAndAccessToken(user, accessToken);

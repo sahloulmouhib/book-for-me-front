@@ -1,6 +1,6 @@
 import { UserRoleEnum } from "utils/enums";
 import { SignUp, SignUpPayload, SignUpResponse } from "./signUp.types";
-import { UserSignUpSchemaType } from "features/auth/forms/auth.signUpFormConfig";
+import { signUpSchemaType } from "features/auth/forms/auth.signUpFormConfig";
 import { decodeUser } from "../User/user.transformers";
 
 export const decodeSignUp = (response: SignUpResponse): SignUp => {
@@ -10,7 +10,7 @@ export const decodeSignUp = (response: SignUpResponse): SignUp => {
   };
 };
 
-export const encodeSignUp = (data: UserSignUpSchemaType): SignUpPayload => {
+export const encodeSignUp = (data: signUpSchemaType): SignUpPayload => {
   return {
     firstName: data.firstName,
     lastName: data.lastName,

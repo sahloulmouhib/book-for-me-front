@@ -16,6 +16,9 @@ export const en = {
       no_account: "Don't have an account?",
       welcome_back: "Welcome back to the club!",
       sign_in_now: "Log in now to continue your journey",
+      errors: {
+        invalid_credentials: "Invalid credentials",
+      },
     },
     sign_up: {
       title: "Create an account",

@@ -1,5 +1,5 @@
 import axiosInstance from "api/axios";
-import { UserSignUpSchemaType } from "../forms/auth.signUpFormConfig";
+import { signUpSchemaType } from "../forms/auth.signUpFormConfig";
 import { authEndpoints } from "./auth.endpoints";
 import {
   decodeSignUp,
@@ -11,8 +11,9 @@ import {
   decodeSignIn,
   encodeSignIn,
 } from "../models/SignIn/signIn.transformers";
+import { SignInSchemaType } from "../forms/auth.signInFormConfig";
 
-export const signUpUserMutationFn = async (data: UserSignUpSchemaType) => {
+export const signUpMutationFn = async (data: signUpSchemaType) => {
   const payload = encodeSignUp(data);
   const response = await axiosInstance.post<
     unknown,
@@ -22,7 +23,7 @@ export const signUpUserMutationFn = async (data: UserSignUpSchemaType) => {
   return decodeSignUp(response.data);
 };
 
-export const signInUserMutationFn = async (data: UserSignUpSchemaType) => {
+export const signInMutationFn = async (data: SignInSchemaType) => {
   const payload = encodeSignIn(data);
   const response = await axiosInstance.post<
     unknown,
