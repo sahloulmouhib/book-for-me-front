@@ -28,7 +28,7 @@ const CustomTextFieldInput: React.FC<CustomTextFieldInputProps> = ({
   isPassword,
   width = BOX_WIDTH,
 }) => {
-  const [isPasswordShown, setIsPasswordShown] = useState(true);
+  const [isPasswordShown, setIsPasswordShown] = useState(false);
 
   const handleClickShowPassword = () => setIsPasswordShown((show) => !show);
 
