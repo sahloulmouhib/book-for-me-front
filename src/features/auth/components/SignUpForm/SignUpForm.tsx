@@ -16,13 +16,14 @@ import CustomTextFieldInput from "components/CustomTextField/CustomTextField";
 import OrDivider from "../OrDivider/OrDivider";
 import { FieldErrors, UseFormRegister } from "react-hook-form";
 import { translate } from "locales/i18n";
-import { Checkbox, FormControlLabel, FormGroup, Stack } from "@mui/material";
-import { SignUpSchemaType } from "features/auth/forms/signUp.formConfig";
+import { Stack } from "@mui/material";
+import { UserSignUpSchemaType } from "features/auth/forms/auth.signUpFormConfig";
 import { SMALL_BOX_WIDTH } from "utils/dimensions";
+import { CustomCheckbox } from "components/CustomCheckbox/CustomCheckbox";
 
 interface SignInFormProps {
-  register: UseFormRegister<SignUpSchemaType>;
-  errors: FieldErrors<SignUpSchemaType>;
+  register: UseFormRegister<UserSignUpSchemaType>;
+  errors: FieldErrors<UserSignUpSchemaType>;
   isValid: boolean;
   onSubmit: () => void;
 }
@@ -53,18 +54,17 @@ export const SignUpForm: React.FC<SignInFormProps> = ({
             width={SMALL_BOX_WIDTH}
             label={translate("auth.sign_up.first_name")}
             placeholder={translate("auth.sign_up.first_name")}
-            register={register("first_name")}
-            errorMessage={errors.first_name?.message}
+            register={register("firstName")}
+            errorMessage={errors.firstName?.message}
           />
           <CustomTextFieldInput
             width={SMALL_BOX_WIDTH}
             label={translate("auth.sign_up.last_name")}
             placeholder={translate("auth.sign_up.last_name")}
-            register={register("last_name")}
-            errorMessage={errors.last_name?.message}
+            register={register("lastName")}
+            errorMessage={errors.lastName?.message}
           />
         </StyledNameContainer>
-
         <CustomTextFieldInput
           label={translate("auth.sign_up.email")}
           placeholder={translate("auth.sign_up.email")}
@@ -81,16 +81,11 @@ export const SignUpForm: React.FC<SignInFormProps> = ({
         <CustomTextFieldInput
           label={translate("auth.sign_up.confirm_password")}
           placeholder={translate("auth.sign_up.confirm_password")}
-          register={register("confirm_password")}
+          register={register("confirmPassword")}
           isPassword
-          errorMessage={errors.confirm_password?.message}
+          errorMessage={errors.confirmPassword?.message}
         />
-        <FormGroup>
-          <FormControlLabel
-            control={<Checkbox />}
-            label={translate("auth.sign_up.agree_to_terms")}
-          />
-        </FormGroup>
+        <CustomCheckbox register={register("hasAgreedToTerms")} />
       </StyledRowContainer>
       <StyledFormContainer>
         <CustomButton

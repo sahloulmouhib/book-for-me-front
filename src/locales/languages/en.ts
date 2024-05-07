@@ -1,4 +1,7 @@
 export const en = {
+  errors: {
+    server: "Something went wrong, please try again later",
+  },
   auth: {
     sign_in: {
       title: "Sign in to your account",
@@ -31,6 +34,9 @@ export const en = {
       agree_to_terms: "I agree to all the Terms of Service",
       make_bookings: "Make your bookings with us !",
       start_journey: "Start your journey with us by creating an account",
+      errors: {
+        email_exists: "Email already exists",
+      },
     },
   },
   validation: {
@@ -51,6 +57,11 @@ export const en = {
     date: {
       max: "{{field}} must be less than or equal to {{max}}",
       min: "{{field}} must be greater than or equal to {{min}}",
+    },
+    password: {
+      regex:
+        "{{field}} must contain at least {{uppercase}} uppercase, {{lowercase}} lowercase, {{number}} number and {{special}} special characters",
+      mismatch: "Confirm password does not match with password",
     },
   },
 };

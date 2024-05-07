@@ -1,4 +1,4 @@
-import { EMAIL_REGEX, MIN_STRING_REQUIRED_LENGTH } from "constant";
+import { EMAIL_REGEX, MIN_STRING_REQUIRED_LENGTH } from "constants";
 import { translate } from "locales/i18n";
 import { z } from "zod";
 

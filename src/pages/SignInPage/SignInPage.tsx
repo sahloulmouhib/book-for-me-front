@@ -6,7 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import {
   signInDefaultValues,
   signInSchema,
-} from "features/auth/forms/signIn.formConfig";
+} from "features/auth/forms/auth.signInFormConfig";
 import { useForm } from "react-hook-form";
 
 const SignInPage: React.FC = () => {
@@ -18,9 +18,8 @@ const SignInPage: React.FC = () => {
   const { errors, isValid } = formState;
 
   const onSubmit = () => {
-    handleSubmit((data) => {
-      console.log(data);
-    })();
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    handleSubmit((_data) => {})();
   };
 
   return (
