@@ -17,10 +17,15 @@ import { AxiosError } from "axios";
 import { HttpStatusCodeEnum } from "api/api.enums";
 import { toast } from "react-toastify";
 import { translate } from "locales/i18n";
+import { DASHBOARD_PATH, SIGN_UP_PATH } from "routes/routes.paths";
 
 const SignInPage: React.FC = () => {
   const { showLoader, hideLoader, setUserAndAccessToken } = useGlobalStore();
   const navigate = useNavigate();
+
+  const navigateToSignUp = () => {
+    navigate(SIGN_UP_PATH);
+  };
 
   const { register, formState, handleSubmit } = useForm({
     mode: "onChange",
@@ -37,8 +42,7 @@ const SignInPage: React.FC = () => {
     try {
       const { accessToken, user } = await signInUserApi(data);
       setUserAndAccessToken(user, accessToken);
-      // TODO: change to navigate to sign-in page
-      navigate("sign-up");
+      navigate(DASHBOARD_PATH);
     } catch (error) {
       if (
         error instanceof AxiosError &&
@@ -69,6 +73,7 @@ const SignInPage: React.FC = () => {
         errors={errors}
         isValid={isValid}
         onSubmit={onSubmit}
+        navigateToSignUp={navigateToSignUp}
       />
     </StyledContainer>
   );

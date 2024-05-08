@@ -18,6 +18,7 @@ interface CustomTextFieldInputProps {
   errorMessage?: string;
   isPassword?: boolean;
   width?: number;
+  isMultiline?: boolean;
 }
 
 const CustomTextFieldInput: React.FC<CustomTextFieldInputProps> = ({
@@ -26,6 +27,7 @@ const CustomTextFieldInput: React.FC<CustomTextFieldInputProps> = ({
   register,
   errorMessage,
   isPassword,
+  isMultiline,
   width = BOX_WIDTH,
 }) => {
   const [isPasswordShown, setIsPasswordShown] = useState(false);
@@ -37,26 +39,31 @@ const CustomTextFieldInput: React.FC<CustomTextFieldInputProps> = ({
   };
   return (
     <StyledStack spacing={spacing.XS}>
-      <StyledLabel variant="subtitle1">{label}</StyledLabel>
+      <StyledLabel>{label}</StyledLabel>
       <StyledInput
+        multiline={isMultiline}
+        rows={isMultiline ? 3 : undefined}
         sx={{ width }}
         inputProps={{
           style: {
-            padding: distance.M,
-            fontSize: fontSize.M,
-            fontWeight: "400",
+            padding: 0,
           },
         }}
+        style={{ width }}
         {...register}
         type={isPassword && !isPasswordShown ? "password" : "text"}
         error={!!errorMessage}
         helperText={errorMessage}
         placeholder={placeholder}
         InputProps={{
+          style: {
+            padding: distance.M,
+            fontSize: fontSize.M,
+            fontWeight: "400",
+          },
           endAdornment: isPassword && (
             <InputAdornment position="end">
               <IconButton
-                aria-label="toggle password visibility"
                 onClick={handleClickShowPassword}
                 onMouseDown={handleMouseDownPassword}
               >

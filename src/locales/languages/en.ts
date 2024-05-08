@@ -42,6 +42,14 @@ export const en = {
       },
     },
   },
+  company: {
+    create_company: {
+      name: "Name",
+      description: "Description",
+      image: "Logo or Image",
+      upload_image: "Upload your company's logo or image",
+    },
+  },
   validation: {
     required: "{{field}} is required",
     string: {

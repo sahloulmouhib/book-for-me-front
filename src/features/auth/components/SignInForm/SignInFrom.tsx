@@ -23,6 +23,7 @@ interface SignInFormProps {
   errors: FieldErrors<SignInSchemaType>;
   isValid: boolean;
   onSubmit: () => void;
+  navigateToSignUp: () => void;
 }
 
 export const SignInForm: React.FC<SignInFormProps> = ({
@@ -30,6 +31,7 @@ export const SignInForm: React.FC<SignInFormProps> = ({
   errors,
   isValid,
   onSubmit,
+  navigateToSignUp,
 }) => {
   return (
     <StyledPageContainer>
@@ -71,7 +73,7 @@ export const SignInForm: React.FC<SignInFormProps> = ({
           <NoAccountTitleStyle>Don't have an account?</NoAccountTitleStyle>
           <CustomBorderlessButton
             title={translate("auth.sign_in.sign_up")}
-            onClick={() => {}}
+            onClick={navigateToSignUp}
           />
         </StyledSignUpContainer>
       </StyledFormContainer>
