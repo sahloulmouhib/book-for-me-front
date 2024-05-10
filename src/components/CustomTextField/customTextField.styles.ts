@@ -17,13 +17,14 @@ export const StyledInput = styled(TextField)(({ theme }) => ({
       padding: 50,
     },
   },
-  width: 450,
+  width: "100%",
 }));
 
 export const StyledLabel = styled(Typography)(({ theme }) => ({
-  textAlign: "center",
+  textAlign: "start",
   fontWeight: "400",
   color: theme.palette.common.black,
+  width: "100%",
 }));
 
 export const StyledStack = styled(Stack)(() => ({

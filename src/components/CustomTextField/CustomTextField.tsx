@@ -17,8 +17,9 @@ interface CustomTextFieldInputProps {
   register?: UseFormRegisterReturn;
   errorMessage?: string;
   isPassword?: boolean;
-  width?: number;
+  width?: number | string;
   isMultiline?: boolean;
+  isNumber?: boolean;
 }
 
 const CustomTextFieldInput: React.FC<CustomTextFieldInputProps> = ({
@@ -29,6 +30,7 @@ const CustomTextFieldInput: React.FC<CustomTextFieldInputProps> = ({
   isPassword,
   isMultiline,
   width = BOX_WIDTH,
+  isNumber,
 }) => {
   const [isPasswordShown, setIsPasswordShown] = useState(false);
 
@@ -37,21 +39,29 @@ const CustomTextFieldInput: React.FC<CustomTextFieldInputProps> = ({
   const handleMouseDownPassword = (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
   };
+
+  const getInputType = () => {
+    if (isPassword && !isPasswordShown) {
+      return "password";
+    }
+    if (isNumber) {
+      return "number";
+    }
+    return "text";
+  };
   return (
-    <StyledStack spacing={spacing.XS}>
+    <StyledStack width={width} spacing={spacing.XS}>
       <StyledLabel>{label}</StyledLabel>
       <StyledInput
         multiline={isMultiline}
         rows={isMultiline ? 3 : undefined}
-        sx={{ width }}
         inputProps={{
           style: {
             padding: 0,
           },
         }}
-        style={{ width }}
         {...register}
-        type={isPassword && !isPasswordShown ? "password" : "text"}
+        type={getInputType()}
         error={!!errorMessage}
         helperText={errorMessage}
         placeholder={placeholder}

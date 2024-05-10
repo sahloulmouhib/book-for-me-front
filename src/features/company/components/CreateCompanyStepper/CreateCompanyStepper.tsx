@@ -16,6 +16,7 @@ import {
 } from "./createCompanyStepper.styles";
 import CustomButton from "components/CustomButton/CustomButton";
 import CompanyDetails from "../CompanyDetails/CompanyDetails";
+import AddCompanyServices from "../AddCompanyServices/AddCompanyServices";
 
 const steps: StepperStep[] = [
   {
@@ -24,7 +25,7 @@ const steps: StepperStep[] = [
   },
   {
     title: "Add company Availabilities",
-    component: <div>"Create an ad group"</div>,
+    component: <AddCompanyServices />,
   },
   { title: "Add company services", component: <div>"Create an ad"</div> },
 ];
