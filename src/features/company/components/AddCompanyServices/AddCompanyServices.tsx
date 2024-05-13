@@ -1,62 +1,72 @@
 import React from "react";
-import { Box, Fab, Stack } from "@mui/material";
+import { Box, Stack } from "@mui/material";
 import CustomTextFieldInput from "components/CustomTextField/CustomTextField";
-import { distance } from "utils/dimensions";
-import CompanyService from "../CompanyService/CompanyService";
 import AddIcon from "@mui/icons-material/Add";
 import useAddCompanyServices from "features/company/hooks/useAddCompanyServices";
+import {
+  StyledAddIconContainer,
+  StyledFormContainer,
+} from "./addCompanyServices.styles";
+import {
+  ADD_COMPANY_SERVICE_PRICE_WIDTH,
+  ADD_COMPANY_SERVICE_TITTLE_WIDTH,
+} from "features/company/utils/company.constants";
+import CompanyServiceList from "../CompanyServiceList/CompanyServiceList";
 interface AddCompanyServicesProps {}
 
 const AddCompanyServices: React.FC<AddCompanyServicesProps> = () => {
-  const { register, onAddService, addedServices, deleteService, editService } =
-    useAddCompanyServices();
+  const {
+    register,
+    onAddService,
+    addedServices,
+    deleteService,
+    editService,
+    errors,
+    isValid,
+  } = useAddCompanyServices();
   return (
     <Box width={"65%"}>
       <Stack>
-        <Stack gap={distance.XXS} flexDirection={"row"} alignItems={"center"}>
+        <StyledFormContainer>
           <CustomTextFieldInput
             label="Title"
             placeholder="Title"
-            width={"70%"}
+            width={ADD_COMPANY_SERVICE_TITTLE_WIDTH}
             register={register("title")}
+            errorMessage={errors.title?.message}
           />
           <CustomTextFieldInput
             label="Price"
             placeholder="Price"
-            width={"30%"}
+            width={ADD_COMPANY_SERVICE_PRICE_WIDTH}
             isNumber
-            register={register("price")}
+            register={register("price", { valueAsNumber: true })}
+            errorMessage={errors.price?.message}
           />
-        </Stack>
+        </StyledFormContainer>
         <CustomTextFieldInput
           isMultiline
           label="Description"
           placeholder="Description"
           width={"100%"}
           register={register("description")}
+          errorMessage={errors.description?.message}
         />
+        <StyledAddIconContainer
+          size="small"
+          color="primary"
+          onClick={onAddService}
+          disabled={!isValid}
+        >
+          <AddIcon />
+        </StyledAddIconContainer>
       </Stack>
 
-      <Fab
-        style={{ right: 0 }}
-        size="small"
-        color="primary"
-        aria-label="add"
-        onClick={onAddService}
-      >
-        <AddIcon />
-      </Fab>
-
-      {addedServices.map((service) => (
-        <CompanyService
-          key={service.id}
-          title={service.title}
-          price={service.price}
-          description={service.description}
-          onDeletePress={() => deleteService(service.id)}
-          onEditPress={() => editService(service.id)}
-        />
-      ))}
+      <CompanyServiceList
+        services={addedServices}
+        deleteService={deleteService}
+        editService={editService}
+      />
     </Box>
   );
 };

@@ -48,6 +48,8 @@ export const en = {
       description: "Description",
       image: "Logo or Image",
       upload_image: "Upload your company's logo or image",
+      price: "Price",
+      title: "Title",
     },
   },
   validation: {
@@ -61,8 +63,8 @@ export const en = {
       min_greater_than_max:
         "Please enter a maximum value greater than the minimum value",
       invalid: "{{field}} must be a number",
-      min: "{{field}} must be greater than or equal to {{min}}",
-      max: "{{field}} must be less than or equal to {{max}}",
+      min: "{{field}} must be greater than {{min}}",
+      max: "{{field}} must be less than {{max}}",
       min_max: "{{field}} must be between {{min}} and {{max}}",
     },
     date: {

@@ -19,5 +19,6 @@ module.exports = {
     "@tanstack/query/no-rest-destructuring": "warn",
     "@tanstack/query/stable-query-client": "error",
     "react-hooks/exhaustive-deps": "off",
+    "no-console": "warn",
   },
 };

@@ -15,17 +15,16 @@ const useAddCompanyServices = () => {
     defaultValues: addCompanyServiceDefaultValues,
     resolver: zodResolver(addCompanyServiceSchema),
   });
-  const { errors } = formState;
+  const { errors, isValid } = formState;
 
-  console.log(errors);
   const onAddService = () => {
     handleSubmit((data) => {
       setAddedServices((previousServices) => {
         const newService = { ...data, id: Math.random().toString() };
         return [...previousServices, newService];
       });
-      reset();
     })();
+    reset();
   };
 
   const deleteService = (id: string) => {
@@ -38,13 +37,22 @@ const useAddCompanyServices = () => {
     const service = addedServices.find((service) => service.id === id);
     deleteService(id);
     if (service) {
-      setValue("title", service.title);
-      setValue("price", service.price);
-      setValue("description", service.description);
+      setValue("title", service.title, { shouldValidate: true });
+      setValue("price", service.price, { shouldValidate: true });
+      service.description &&
+        setValue("description", service.description, { shouldValidate: true });
     }
   };
 
-  return { addedServices, register, onAddService, editService, deleteService };
+  return {
+    addedServices,
+    register,
+    onAddService,
+    editService,
+    deleteService,
+    errors,
+    isValid,
+  };
 };
 
 export default useAddCompanyServices;
