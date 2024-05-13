@@ -14,7 +14,7 @@ import CustomIconButton from "components/CustomIconButton/CustomIconButton";
 import CustomTextFieldInput from "components/CustomTextField/CustomTextField";
 import OrDivider from "../OrDivider/OrDivider";
 import { FieldErrors, UseFormRegister } from "react-hook-form";
-import { SignInSchemaType } from "features/auth/forms/signIn.formConfig";
+import { SignInSchemaType } from "features/auth/forms/auth.signInFormConfig";
 import { translate } from "locales/i18n";
 import { Stack } from "@mui/material";
 
@@ -23,6 +23,7 @@ interface SignInFormProps {
   errors: FieldErrors<SignInSchemaType>;
   isValid: boolean;
   onSubmit: () => void;
+  navigateToSignUp: () => void;
 }
 
 export const SignInForm: React.FC<SignInFormProps> = ({
@@ -30,6 +31,7 @@ export const SignInForm: React.FC<SignInFormProps> = ({
   errors,
   isValid,
   onSubmit,
+  navigateToSignUp,
 }) => {
   return (
     <StyledPageContainer>
@@ -71,7 +73,7 @@ export const SignInForm: React.FC<SignInFormProps> = ({
           <NoAccountTitleStyle>Don't have an account?</NoAccountTitleStyle>
           <CustomBorderlessButton
             title={translate("auth.sign_in.sign_up")}
-            onClick={() => {}}
+            onClick={navigateToSignUp}
           />
         </StyledSignUpContainer>
       </StyledFormContainer>

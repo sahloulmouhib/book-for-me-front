@@ -1,4 +1,7 @@
 export const en = {
+  errors: {
+    server: "Something went wrong, please try again later",
+  },
   auth: {
     sign_in: {
       title: "Sign in to your account",
@@ -13,6 +16,9 @@ export const en = {
       no_account: "Don't have an account?",
       welcome_back: "Welcome back to the club!",
       sign_in_now: "Log in now to continue your journey",
+      errors: {
+        invalid_credentials: "Invalid credentials",
+      },
     },
     sign_up: {
       title: "Create an account",
@@ -31,6 +37,19 @@ export const en = {
       agree_to_terms: "I agree to all the Terms of Service",
       make_bookings: "Make your bookings with us !",
       start_journey: "Start your journey with us by creating an account",
+      errors: {
+        email_exists: "Email already exists",
+      },
+    },
+  },
+  company: {
+    create_company: {
+      name: "Name",
+      description: "Description",
+      image: "Logo or Image",
+      upload_image: "Upload your company's logo or image",
+      price: "Price",
+      title: "Title",
     },
   },
   validation: {
@@ -44,13 +63,18 @@ export const en = {
       min_greater_than_max:
         "Please enter a maximum value greater than the minimum value",
       invalid: "{{field}} must be a number",
-      min: "{{field}} must be greater than or equal to {{min}}",
-      max: "{{field}} must be less than or equal to {{max}}",
+      min: "{{field}} must be greater than {{min}}",
+      max: "{{field}} must be less than {{max}}",
       min_max: "{{field}} must be between {{min}} and {{max}}",
     },
     date: {
       max: "{{field}} must be less than or equal to {{max}}",
       min: "{{field}} must be greater than or equal to {{min}}",
+    },
+    password: {
+      regex:
+        "{{field}} must contain at least {{uppercase}} uppercase, {{lowercase}} lowercase, {{number}} number and {{special}} special characters",
+      mismatch: "Confirm password does not match with password",
     },
   },
 };

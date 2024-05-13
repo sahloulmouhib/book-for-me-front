@@ -1,6 +1,8 @@
 import { createBrowserRouter } from "react-router-dom";
 import SignInPage from "pages/SignInPage/SignInPage";
 import SignUpPage from "pages/SignUpPage/SignUpPage";
+import { DASHBOARD_PATH, SIGN_IN_PATH, SIGN_UP_PATH } from "./routes.paths";
+import CreateCompanyStepper from "features/company/components/CreateCompanyStepper/CreateCompanyStepper";
 
 export const router = createBrowserRouter([
   {
@@ -8,11 +10,15 @@ export const router = createBrowserRouter([
     element: <SignUpPage />,
   },
   {
-    path: "/sign-up",
+    path: SIGN_UP_PATH,
     element: <SignUpPage />,
   },
   {
-    path: "/sign-in",
+    path: SIGN_IN_PATH,
     element: <SignInPage />,
+  },
+  {
+    path: DASHBOARD_PATH,
+    element: <CreateCompanyStepper />,
   },
 ]);

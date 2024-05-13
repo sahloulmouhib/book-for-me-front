@@ -17,7 +17,9 @@ interface CustomTextFieldInputProps {
   register?: UseFormRegisterReturn;
   errorMessage?: string;
   isPassword?: boolean;
-  width?: number;
+  width?: number | string;
+  isMultiline?: boolean;
+  isNumber?: boolean;
 }
 
 const CustomTextFieldInput: React.FC<CustomTextFieldInputProps> = ({
@@ -26,37 +28,52 @@ const CustomTextFieldInput: React.FC<CustomTextFieldInputProps> = ({
   register,
   errorMessage,
   isPassword,
+  isMultiline,
   width = BOX_WIDTH,
+  isNumber,
 }) => {
-  const [isPasswordShown, setIsPasswordShown] = useState(true);
+  const [isPasswordShown, setIsPasswordShown] = useState(false);
 
   const handleClickShowPassword = () => setIsPasswordShown((show) => !show);
 
   const handleMouseDownPassword = (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
   };
+
+  const getInputType = () => {
+    if (isPassword && !isPasswordShown) {
+      return "password";
+    }
+    if (isNumber) {
+      return "number";
+    }
+    return "text";
+  };
   return (
-    <StyledStack spacing={spacing.XS}>
-      <StyledLabel variant="subtitle1">{label}</StyledLabel>
+    <StyledStack width={width} spacing={spacing.XS}>
+      <StyledLabel>{label}</StyledLabel>
       <StyledInput
-        sx={{ width }}
+        multiline={isMultiline}
+        rows={isMultiline ? 3 : undefined}
         inputProps={{
+          style: {
+            padding: 0,
+          },
+        }}
+        {...register}
+        type={getInputType()}
+        error={!!errorMessage}
+        helperText={errorMessage}
+        placeholder={placeholder}
+        InputProps={{
           style: {
             padding: distance.M,
             fontSize: fontSize.M,
             fontWeight: "400",
           },
-        }}
-        {...register}
-        type={isPassword && !isPasswordShown ? "password" : "text"}
-        error={!!errorMessage}
-        helperText={errorMessage}
-        placeholder={placeholder}
-        InputProps={{
           endAdornment: isPassword && (
             <InputAdornment position="end">
               <IconButton
-                aria-label="toggle password visibility"
                 onClick={handleClickShowPassword}
                 onMouseDown={handleMouseDownPassword}
               >
