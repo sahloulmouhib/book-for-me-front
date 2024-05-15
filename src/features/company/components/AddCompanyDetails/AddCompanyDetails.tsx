@@ -5,9 +5,9 @@ import { translate } from "locales/i18n";
 import React from "react";
 import { spacing } from "utils/dimensions";
 
-interface CompanyDetailsProps {}
+interface AddCompanyDetailsProps {}
 
-const CompanyDetails: React.FC<CompanyDetailsProps> = () => {
+const AddCompanyDetails: React.FC<AddCompanyDetailsProps> = () => {
   return (
     <Stack spacing={spacing.S}>
       <CustomTextFieldInput
@@ -28,4 +28,4 @@ const CompanyDetails: React.FC<CompanyDetailsProps> = () => {
   );
 };
 
-export default CompanyDetails;
+export default AddCompanyDetails;

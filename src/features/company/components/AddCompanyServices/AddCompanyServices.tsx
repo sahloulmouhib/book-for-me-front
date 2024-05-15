@@ -12,6 +12,7 @@ import {
   ADD_COMPANY_SERVICE_TITTLE_WIDTH,
 } from "features/company/utils/company.constants";
 import CompanyServiceList from "../CompanyServiceList/CompanyServiceList";
+import { spacing } from "utils/dimensions";
 interface AddCompanyServicesProps {}
 
 const AddCompanyServices: React.FC<AddCompanyServicesProps> = () => {
@@ -26,7 +27,7 @@ const AddCompanyServices: React.FC<AddCompanyServicesProps> = () => {
   } = useAddCompanyServices();
   return (
     <Box width={"65%"}>
-      <Stack>
+      <Stack spacing={spacing.S}>
         <StyledFormContainer>
           <CustomTextFieldInput
             label="Title"

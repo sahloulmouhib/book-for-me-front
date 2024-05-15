@@ -6,7 +6,7 @@ import StepButton from "@mui/material/StepButton";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import useCreateCompanyStepper from "features/company/hooks/useCreateCompanyStepper";
-import { StepperStep } from "features/company/company.types";
+import { StepperStep } from "features/company/utils/company.types";
 import {
   StyledButtonSeparator,
   StyledButtonsContainer,
@@ -15,19 +15,20 @@ import {
   StyledStepTitle,
 } from "./createCompanyStepper.styles";
 import CustomButton from "components/CustomButton/CustomButton";
-import CompanyDetails from "../CompanyDetails/CompanyDetails";
+import AddCompanyDetails from "../AddCompanyDetails/AddCompanyDetails";
 import AddCompanyServices from "../AddCompanyServices/AddCompanyServices";
+import AddCompanyAvailabilities from "../AddCompanyAvailabilities/AddCompanyAvailabilities";
 
 const steps: StepperStep[] = [
   {
     title: "Add company details",
-    component: <CompanyDetails />,
+    component: <AddCompanyDetails />,
   },
   {
     title: "Add company Availabilities",
-    component: <AddCompanyServices />,
+    component: <AddCompanyAvailabilities />,
   },
-  { title: "Add company services", component: <div>"Create an ad"</div> },
+  { title: "Add company services", component: <AddCompanyServices /> },
 ];
 
 export default function CreateCompanyStepper() {

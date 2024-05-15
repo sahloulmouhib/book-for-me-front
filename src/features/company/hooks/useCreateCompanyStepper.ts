@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { StepperStep } from "../company.types";
+import { StepperStep } from "../utils/company.types";
 
 const useCreateCompanyStepper = (steps: StepperStep[]) => {
   const [activeStep, setActiveStep] = useState(0);
