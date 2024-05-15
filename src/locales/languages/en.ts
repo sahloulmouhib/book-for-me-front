@@ -2,6 +2,18 @@ export const en = {
   errors: {
     server: "Something went wrong, please try again later",
   },
+  date: {
+    week_day: {
+      monday: "Monday",
+      tuesday: "Tuesday",
+      wednesday: "Wednesday",
+      thursday: "Thursday",
+      friday: "Friday",
+      saturday: "Saturday",
+      sunday: "Sunday",
+    },
+  },
+
   auth: {
     sign_in: {
       title: "Sign in to your account",
@@ -48,9 +60,16 @@ export const en = {
       description: "Description",
       image: "Logo or Image",
       upload_image: "Upload your company's logo or image",
-      price: "Price",
-      title: "Title",
     },
+  },
+  availability: {
+    from: "From",
+    to: "To",
+    start_time_lower_than_end_time: "Start time must be lower than end time",
+  },
+  service: {
+    price: "Price",
+    title: "Title",
   },
   validation: {
     required: "{{field}} is required",

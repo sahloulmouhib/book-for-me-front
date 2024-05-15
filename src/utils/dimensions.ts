@@ -36,3 +36,6 @@ export const distance = {
 export const BOX_WIDTH = 450;
 
 export const SMALL_BOX_WIDTH = BOX_WIDTH / 2 - distance.S;
+
+export const TIME_PICKER_WIDTH = 160;
+export const TIME_PICKER_HEIGHT = 40;

@@ -12,7 +12,7 @@ export const StyledContainer = styled(Box)(() => ({
 export const StyledButtonsContainer = styled(Stack)(() => ({
   flexDirection: "row",
   width: "100%",
-  paddingTop: distance.XL,
+  paddingTop: distance.L,
 }));
 
 export const StyledButtonSeparator = styled(Box)(() => ({
@@ -31,4 +31,10 @@ export const StyledStepTitle = styled(Typography)(({ theme }) => ({
 export const StyledStepContainer = styled(Stack)(() => ({
   width: "100%",
   height: "100%",
+}));
+
+export const StyledStepContent = styled(Stack)(() => ({
+  width: "100%",
+  height: "100%",
+  overflowY: "auto",
 }));

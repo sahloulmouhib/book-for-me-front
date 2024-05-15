@@ -3,7 +3,7 @@ import { Service } from "../models/Service/service.types";
 import {
   addCompanyServiceDefaultValues,
   addCompanyServiceSchema,
-} from "../forms/company.addCompanyServices";
+} from "../forms/service.addCompanyServices";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 

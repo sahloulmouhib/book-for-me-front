@@ -1,6 +1,6 @@
 import React from "react";
 import CompanyService from "../CompanyService/CompanyService";
-import { Service } from "features/company/models/Service/service.types";
+import { Service } from "features/service/models/Service/service.types";
 import { StyledListContainer } from "./companyServiceList.styles";
 
 interface CompanyServiceListProps {

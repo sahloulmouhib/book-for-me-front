@@ -1,4 +1,5 @@
 import { Stack, Typography, styled } from "@mui/material";
+import { WEEK_DAY_TITLE_WIDTH } from "features/availability/utils/availability.constants";
 import { distance } from "utils/dimensions";
 
 export const StyledContainer = styled(Stack)({
@@ -9,10 +10,9 @@ export const StyledContainer = styled(Stack)({
   gap: distance.XL,
 });
 
-// TODO: fix styles
 export const StyledWeekDayTitle = styled(Typography)({
   fontWeight: "bold",
-  width: 130,
+  width: WEEK_DAY_TITLE_WIDTH,
 });
 
 export const StyledErrorText = styled(Typography)(({ theme }) => ({
@@ -20,7 +20,5 @@ export const StyledErrorText = styled(Typography)(({ theme }) => ({
 }));
 
 export const StyledTimePickerListContainer = styled(Stack)({
-  gap: distance.XXS,
-  justifyContent: "center",
-  alignItems: "center",
+  alignItems: "start",
 });

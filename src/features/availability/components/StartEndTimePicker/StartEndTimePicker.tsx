@@ -1,10 +1,11 @@
 import React from "react";
 
-import CustomTimePicker from "../CustomTimePicker/CustomTimePicker";
 import { StyledContainer } from "./startEndTimePicker.styles";
 import { Button, Typography } from "@mui/material";
-import { AvailabilitiesSchemaType } from "features/company/forms/company.addCompanyAvailablitiesFormConfig";
-import { DeleteOutline } from "@mui/icons-material";
+import { AvailabilitiesSchemaType } from "features/availability/forms/availability.addCompanyAvailabilitiesFormConfig";
+import { AddCircleOutlined, CancelRounded } from "@mui/icons-material";
+import CustomTimePicker from "components/CustomTimePicker/CustomTimePicker";
+import { translate } from "locales/i18n";
 
 interface StartEndTimePickerProps {
   value: AvailabilitiesSchemaType;
@@ -13,7 +14,13 @@ interface StartEndTimePickerProps {
   isDisabled?: boolean;
   minTime?: Date;
   maxTime?: Date;
+
   onRemove?: () => void;
+
+  addButton?: {
+    onClick: () => void;
+    isDisabled: boolean;
+  };
 }
 
 const StartEndTimePicker: React.FC<StartEndTimePickerProps> = ({
@@ -23,6 +30,7 @@ const StartEndTimePicker: React.FC<StartEndTimePickerProps> = ({
   isDisabled,
   minTime,
   onRemove,
+  addButton,
 }) => {
   const onChangeStartTime = (startTime: Date | null) => {
     if (index === 0 && value.length === 0) {
@@ -66,22 +74,32 @@ const StartEndTimePicker: React.FC<StartEndTimePickerProps> = ({
 
   return (
     <StyledContainer>
-      <Typography>From</Typography>
+      <Typography>{translate("availability.from")}</Typography>
       <CustomTimePicker
         isDisabled={isDisabled}
         value={startTime}
         onChange={onChangeStartTime}
         min={minTime}
       />
-      <Typography>To</Typography>
+      <Typography>{translate("availability.to")}</Typography>
       <CustomTimePicker
         isDisabled={isDisabled}
         value={endTime}
         onChange={onChangeEndTime}
       />
       {isDisabled && (
-        <Button variant="text" color="warning" onClick={onRemove}>
-          <DeleteOutline />
+        <Button variant="text" color="secondary" onClick={onRemove}>
+          <CancelRounded />
+        </Button>
+      )}
+      {!isDisabled && addButton && (
+        <Button
+          variant="text"
+          color="primary"
+          onClick={addButton.onClick}
+          disabled={addButton.isDisabled}
+        >
+          <AddCircleOutlined />
         </Button>
       )}
     </StyledContainer>

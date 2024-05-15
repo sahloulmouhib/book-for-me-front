@@ -12,13 +12,14 @@ import {
   StyledButtonsContainer,
   StyledContainer,
   StyledStepContainer,
+  StyledStepContent,
   StyledStepTitle,
 } from "./createCompanyStepper.styles";
 import CustomButton from "components/CustomButton/CustomButton";
 import AddCompanyDetails from "../AddCompanyDetails/AddCompanyDetails";
-import AddCompanyServices from "../AddCompanyServices/AddCompanyServices";
-import AddCompanyAvailabilities from "../AddCompanyAvailabilities/AddCompanyAvailabilities";
-
+import AddCompanyAvailabilities from "features/availability/components/AddCompanyAvailabilities/AddCompanyAvailabilities";
+import AddCompanyServices from "features/service/components/AddCompanyServices/AddCompanyServices";
+// TODO: refactor to use styled-components
 const steps: StepperStep[] = [
   {
     title: "Add company details",
@@ -67,9 +68,7 @@ export default function CreateCompanyStepper() {
         ) : (
           <>
             <StyledStepTitle>{steps[activeStep].title}</StyledStepTitle>
-            <StyledStepContainer>
-              {steps[activeStep].component}
-            </StyledStepContainer>
+            <StyledStepContent>{steps[activeStep].component}</StyledStepContent>
             <StyledButtonsContainer>
               <CustomButton
                 width={100}

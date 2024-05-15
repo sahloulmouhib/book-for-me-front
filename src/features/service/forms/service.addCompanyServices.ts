@@ -15,20 +15,20 @@ export const addCompanyServiceSchema = z.object({
     .min(
       MIN_STRING_REQUIRED_LENGTH,
       translate("validation.required", {
-        field: translate("company.create_company.title"),
+        field: translate("service.title"),
       })
     )
     .min(
       MIN_STRING_LENGTH,
       translate("validation.string.min", {
-        field: translate("company.create_company.title"),
+        field: translate("service.title"),
         min: MIN_STRING_LENGTH,
       })
     )
     .max(
       MAX_STRING_LENGTH,
       translate("validation.string.max", {
-        field: translate("company.create_company.title"),
+        field: translate("service.title"),
         max: MAX_STRING_LENGTH,
       })
     ),
@@ -46,15 +46,15 @@ export const addCompanyServiceSchema = z.object({
   price: z
     .number({
       invalid_type_error: translate("validation.required", {
-        field: translate("company.create_company.price"),
+        field: translate("service.price"),
       }),
       required_error: translate("validation.required", {
-        field: translate("company.create_company.price"),
+        field: translate("service.price"),
       }),
     })
     .positive({
       message: translate("validation.number.min", {
-        field: translate("company.create_company.price"),
+        field: translate("service.price"),
         min: MIN_POSITIVE_NUMBER,
       }),
     }),

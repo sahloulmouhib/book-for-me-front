@@ -1,13 +1,17 @@
-import { Stack, styled } from "@mui/material";
+import styled from "@emotion/styled";
 import { TimePicker } from "@mui/x-date-pickers";
 import { theme } from "theme/theme";
-import { borderRadius, distance, fontSize } from "utils/dimensions";
+import {
+  TIME_PICKER_HEIGHT,
+  TIME_PICKER_WIDTH,
+  borderRadius,
+  fontSize,
+} from "utils/dimensions";
 
-// TODO: fix styles
 export const StyledTimePicker = styled(TimePicker)({
-  width: 160,
+  width: TIME_PICKER_WIDTH,
   "& .MuiOutlinedInput-root": {
-    height: 40,
+    height: TIME_PICKER_HEIGHT,
     "& fieldset": {
       borderRadius: borderRadius.S,
       borderColor: theme.palette.grey[400],
@@ -19,13 +23,4 @@ export const StyledTimePicker = styled(TimePicker)({
       opacity: 1,
     },
   },
-});
-
-export const StyledContainer = styled(Stack)({
-  flexDirection: "row",
-  width: "100%",
-  justifyContent: "start",
-  alignItems: "center",
-  gap: distance.M,
-  border: "3px solid red",
 });

@@ -1,4 +1,5 @@
 import { isBefore } from "date-fns";
+import { translate } from "locales/i18n";
 import { z } from "zod";
 const availabilitiesSchema = z.array(
   z
@@ -12,8 +13,7 @@ const availabilitiesSchema = z.array(
       return startTime !== null && endTime !== null
         ? isBefore(startTime, endTime)
         : false;
-      // TODO: add to translation
-    }, "Start time must be before end time")
+    }, translate("availability.start_time_lower_than_end_time"))
 );
 export type AvailabilitiesSchemaType = z.infer<typeof availabilitiesSchema>;
 

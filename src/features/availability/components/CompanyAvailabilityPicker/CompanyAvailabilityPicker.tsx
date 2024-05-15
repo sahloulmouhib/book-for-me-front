@@ -9,15 +9,13 @@ import {
 import {
   AddCompanyAvailabilitiesSchemaType,
   AvailabilitiesSchemaType,
-} from "features/company/forms/company.addCompanyAvailablitiesFormConfig";
+} from "features/availability/forms/availability.addCompanyAvailabilitiesFormConfig";
 import { Control, Controller, UseFormStateReturn } from "react-hook-form";
-import CustomButton from "components/CustomButton/CustomButton";
 
-interface CompanyAvailabilityPickerProps {
+export interface CompanyAvailabilityPickerProps {
   weekday: string;
   control: Control<AddCompanyAvailabilitiesSchemaType>;
   name: keyof AddCompanyAvailabilitiesSchemaType;
-  isFormValid?: boolean;
 }
 
 const CompanyAvailabilityPicker: React.FC<CompanyAvailabilityPickerProps> = ({
@@ -36,7 +34,6 @@ const CompanyAvailabilityPicker: React.FC<CompanyAvailabilityPickerProps> = ({
     formState: UseFormStateReturn<AddCompanyAvailabilitiesSchemaType>,
     value: AvailabilitiesSchemaType
   ) => {
-    console.log(formState.errors.monday, value.length > 0);
     return (
       !formState.errors.monday &&
       value.length > 0 &&
@@ -94,6 +91,10 @@ const CompanyAvailabilityPicker: React.FC<CompanyAvailabilityPickerProps> = ({
                 isDisabled={value.length > index + 1}
                 minTime={getMinTime(value, index)}
                 onRemove={deleteAvailability(value, index, onChange)}
+                addButton={{
+                  onClick: onAddTimePicker(onChange, value),
+                  isDisabled: !checkIfFormIsValid(formState, value),
+                }}
               />
             ))}
             {getErrorMessage(formState, value) && (
@@ -102,11 +103,6 @@ const CompanyAvailabilityPicker: React.FC<CompanyAvailabilityPickerProps> = ({
               </StyledErrorText>
             )}
           </StyledTimePickerListContainer>
-          <CustomButton
-            isDisabled={!checkIfFormIsValid(formState, value)}
-            title="Add"
-            onClick={onAddTimePicker(onChange, value)}
-          />
         </StyledContainer>
       )}
     />

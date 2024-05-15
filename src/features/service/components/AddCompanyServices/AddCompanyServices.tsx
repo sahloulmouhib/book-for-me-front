@@ -2,17 +2,18 @@ import React from "react";
 import { Box, Stack } from "@mui/material";
 import CustomTextFieldInput from "components/CustomTextField/CustomTextField";
 import AddIcon from "@mui/icons-material/Add";
-import useAddCompanyServices from "features/company/hooks/useAddCompanyServices";
+import useAddCompanyServices from "features/service/hooks/useAddCompanyServices";
 import {
   StyledAddIconContainer,
   StyledFormContainer,
 } from "./addCompanyServices.styles";
-import {
-  ADD_COMPANY_SERVICE_PRICE_WIDTH,
-  ADD_COMPANY_SERVICE_TITTLE_WIDTH,
-} from "features/company/utils/company.constants";
-import CompanyServiceList from "../CompanyServiceList/CompanyServiceList";
+
 import { spacing } from "utils/dimensions";
+import CompanyServiceList from "features/service/components/CompanyServiceList/CompanyServiceList";
+import {
+  ADD_COMPANY_SERVICE_TITTLE_WIDTH,
+  ADD_COMPANY_SERVICE_PRICE_WIDTH,
+} from "features/service/utils/service.constants";
 interface AddCompanyServicesProps {}
 
 const AddCompanyServices: React.FC<AddCompanyServicesProps> = () => {
