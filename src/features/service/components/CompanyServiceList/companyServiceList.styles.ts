@@ -5,4 +5,5 @@ export const StyledListContainer = styled(Stack)({
   gap: distance.S,
   flexDirection: "column",
   alignItems: "center",
+  width: "100%",
 });

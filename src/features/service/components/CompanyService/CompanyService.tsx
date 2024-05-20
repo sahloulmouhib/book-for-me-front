@@ -11,6 +11,7 @@ import {
 import AttachMoneyOutlinedIcon from "@mui/icons-material/AttachMoneyOutlined";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
+import { Button, Stack } from "@mui/material";
 
 interface CompanyServiceProps {
   title: string;
@@ -44,10 +45,17 @@ const CompanyService: React.FC<CompanyServiceProps> = ({
           />
         </StyledPriceContainer>
       </StyledCardContainer>
-      <>
-        <EditIcon onClick={onEditPress} style={{ height: 20, width: 20 }} />
-        <DeleteIcon onClick={onDeletePress} style={{ height: 20, width: 20 }} />
-      </>
+      <Stack>
+        <Button>
+          <EditIcon onClick={onEditPress} style={{ height: 20, width: 20 }} />
+        </Button>
+        <Button>
+          <DeleteIcon
+            onClick={onDeletePress}
+            style={{ height: 20, width: 20 }}
+          />
+        </Button>
+      </Stack>
     </StyledContainer>
   );
 };

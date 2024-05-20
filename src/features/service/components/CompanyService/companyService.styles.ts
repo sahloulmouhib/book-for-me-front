@@ -5,6 +5,7 @@ export const StyledContainer = styled(Stack)(() => ({
   flexDirection: "row",
   alignItems: "center",
   gap: spacing.L,
+  flex: 1,
   width: "100%",
 }));
 
@@ -16,19 +17,24 @@ export const StyledCardContainer = styled(Stack)(({ theme }) => ({
   alignItems: "center",
   padding: distance.M,
   gap: spacing.L,
-  flex: "1",
+  flex: 1,
+  width: "100%",
 }));
 
 export const StyledTitle = styled(Typography)(({ theme }) => ({
   color: theme.palette.common.black,
   fontSize: fontSize.XS,
   fontWeight: "500",
+  width: "100%",
+  wordWrap: "break-word",
 }));
 
 export const StyledDescription = styled(Typography)(({ theme }) => ({
   color: theme.palette.grey[500],
   fontSize: fontSize.XS,
   fontWeight: "light",
+  width: "100%",
+  wordWrap: "break-word",
 }));
 
 export const StyledPriceTitle = styled(Typography)(({ theme }) => ({
@@ -38,12 +44,13 @@ export const StyledPriceTitle = styled(Typography)(({ theme }) => ({
 
 export const StyledPriceContainer = styled(Stack)(() => ({
   flexDirection: "row",
-  justifyItems: "center",
+  justifyItems: "flex-end",
   alignItems: "center",
+  width: "5%",
 }));
 
 export const StyledTextContainer = styled(Stack)(() => ({
   justifyItems: "center",
   gap: spacing.S,
-  width: "70%",
+  width: "95%",
 }));
