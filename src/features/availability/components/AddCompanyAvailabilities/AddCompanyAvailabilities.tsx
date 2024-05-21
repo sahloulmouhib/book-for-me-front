@@ -1,26 +1,20 @@
 import React from "react";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import {
-  AddCompanyAvailabilitiesSchemaType,
-  addCompanyAvailabilitiesDefaultValues,
-  addCompanyAvailabilitiesSchema,
-} from "features/availability/forms/availability.addCompanyAvailabilitiesFormConfig";
+import { UseFormReturn } from "react-hook-form";
+import { AddCompanyAvailabilitiesSchemaType } from "features/availability/forms/availability.addCompanyAvailabilitiesFormConfig";
 import CompanyAvailabilityPicker, {
   CompanyAvailabilityPickerProps,
 } from "../CompanyAvailabilityPicker/CompanyAvailabilityPicker";
 import { StyledContainer } from "./addCompanyAvailabilities.styles";
 import { translate } from "locales/i18n";
-interface AddCompanyAvailabilitiesProps {}
 
-const AddCompanyAvailabilities: React.FC<
-  AddCompanyAvailabilitiesProps
-> = () => {
-  const { control } = useForm<AddCompanyAvailabilitiesSchemaType>({
-    mode: "onChange",
-    resolver: zodResolver(addCompanyAvailabilitiesSchema),
-    defaultValues: addCompanyAvailabilitiesDefaultValues,
-  });
+interface AddCompanyAvailabilitiesProps {
+  form: UseFormReturn<AddCompanyAvailabilitiesSchemaType>;
+}
+
+const AddCompanyAvailabilities: React.FC<AddCompanyAvailabilitiesProps> = ({
+  form,
+}) => {
+  const { control } = form;
 
   const companyAvailabilityPickerList: Array<
     Omit<CompanyAvailabilityPickerProps, "control">

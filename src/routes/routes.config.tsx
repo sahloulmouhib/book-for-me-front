@@ -2,7 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import SignInPage from "pages/SignInPage/SignInPage";
 import SignUpPage from "pages/SignUpPage/SignUpPage";
 import { DASHBOARD_PATH, SIGN_IN_PATH, SIGN_UP_PATH } from "./routes.paths";
-import CreateCompanyStepper from "features/company/components/CreateCompanyStepper/CreateCompanyStepper";
+import CreateCompanyStepper from "components/CreateCompanyStepper/CreateCompanyStepper";
 
 export const router = createBrowserRouter([
   {

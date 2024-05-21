@@ -14,9 +14,13 @@ import {
   ADD_COMPANY_SERVICE_TITTLE_WIDTH,
   ADD_COMPANY_SERVICE_PRICE_WIDTH,
 } from "features/service/utils/service.constants";
-interface AddCompanyServicesProps {}
+import { AddCompanyServiceSchemaType } from "features/service/forms/service.addCompanyServices";
+import { UseFormReturn } from "react-hook-form";
+interface AddCompanyServicesProps {
+  form: UseFormReturn<AddCompanyServiceSchemaType>;
+}
 
-const AddCompanyServices: React.FC<AddCompanyServicesProps> = () => {
+const AddCompanyServices: React.FC<AddCompanyServicesProps> = ({ form }) => {
   const {
     register,
     onAddService,
@@ -25,7 +29,7 @@ const AddCompanyServices: React.FC<AddCompanyServicesProps> = () => {
     editService,
     errors,
     isValid,
-  } = useAddCompanyServices();
+  } = useAddCompanyServices(form);
   return (
     <Box width={"65%"}>
       <Stack spacing={spacing.S}>

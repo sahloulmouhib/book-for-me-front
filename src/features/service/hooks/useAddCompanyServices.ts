@@ -1,20 +1,14 @@
 import { useState } from "react";
 import { Service } from "../models/Service/service.types";
-import {
-  addCompanyServiceDefaultValues,
-  addCompanyServiceSchema,
-} from "../forms/service.addCompanyServices";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
+import { AddCompanyServiceSchemaType } from "../forms/service.addCompanyServices";
+import { UseFormReturn } from "react-hook-form";
 
-const useAddCompanyServices = () => {
+const useAddCompanyServices = (
+  form: UseFormReturn<AddCompanyServiceSchemaType>
+) => {
   const [addedServices, setAddedServices] = useState<Service[]>([]);
 
-  const { register, formState, handleSubmit, setValue, reset } = useForm({
-    mode: "onChange",
-    defaultValues: addCompanyServiceDefaultValues,
-    resolver: zodResolver(addCompanyServiceSchema),
-  });
+  const { register, formState, handleSubmit, setValue, reset } = form;
   const { errors, isValid } = formState;
 
   const onAddService = () => {

@@ -16,23 +16,38 @@ import {
   StyledStepTitle,
 } from "./createCompanyStepper.styles";
 import CustomButton from "components/CustomButton/CustomButton";
-import AddCompanyDetails from "../AddCompanyDetails/AddCompanyDetails";
+import AddCompanyDetails from "features/company/components/AddCompanyDetails/AddCompanyDetails";
 import AddCompanyAvailabilities from "features/availability/components/AddCompanyAvailabilities/AddCompanyAvailabilities";
 import AddCompanyServices from "features/service/components/AddCompanyServices/AddCompanyServices";
+import useCreateCompanyForm from "hooks/useCreateCompanyForm";
 // TODO: refactor to use styled-components
-const steps: StepperStep[] = [
-  {
-    title: "Add company details",
-    component: <AddCompanyDetails />,
-  },
-  {
-    title: "Add company Availabilities",
-    component: <AddCompanyAvailabilities />,
-  },
-  { title: "Add company services", component: <AddCompanyServices /> },
-];
 
 export default function CreateCompanyStepper() {
+  const {
+    addCompanyAvailabilitiesForm,
+    addCompanyDetailsForm,
+    addCompanyServicesForm,
+  } = useCreateCompanyForm();
+
+  const steps: StepperStep[] = [
+    {
+      title: "Add company details",
+      component: <AddCompanyDetails form={addCompanyDetailsForm} />,
+      isValid: addCompanyDetailsForm.formState.isValid,
+    },
+    {
+      title: "Add company Availabilities",
+      component: (
+        <AddCompanyAvailabilities form={addCompanyAvailabilitiesForm} />
+      ),
+      isValid: addCompanyAvailabilitiesForm.formState.isValid,
+    },
+    {
+      title: "Add company services",
+      component: <AddCompanyServices form={addCompanyServicesForm} />,
+      isValid: addCompanyServicesForm.formState.isValid,
+    },
+  ];
   const {
     activeStep,
     completed,
@@ -77,7 +92,12 @@ export default function CreateCompanyStepper() {
                 isDisabled={activeStep === 0}
               />
               <StyledButtonSeparator />
-              <CustomButton width={100} onClick={handleNext} title="Next" />
+              <CustomButton
+                width={100}
+                onClick={handleNext}
+                title="Next"
+                isDisabled={!steps[activeStep].isValid}
+              />
             </StyledButtonsContainer>
           </>
         )}

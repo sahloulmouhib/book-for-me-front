@@ -39,7 +39,7 @@ export const addCompanyDetailsSchema = z.object({
         length: MAX_MULTILINE_STRING_LENGTH,
       })
     ),
-  image: z.object({}).optional(),
+  image: z.instanceof(File).optional(),
 });
 
 export type AddCompanyDetailsSchemaType = z.infer<

@@ -24,7 +24,7 @@ export const LightColorsConfig: PaletteOptions = {
     main: "#ED5454",
   },
   error: {
-    light: "#ed7272",
+    light: "#ffe6e6",
     main: "#DA1414",
     dark: "#9B0000",
   },
