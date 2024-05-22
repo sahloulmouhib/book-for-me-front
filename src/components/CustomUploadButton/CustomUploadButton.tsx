@@ -1,4 +1,4 @@
-import React, { ChangeEvent } from "react";
+import React, { ChangeEvent, MouseEventHandler } from "react";
 
 import {
   StyledContainer,
@@ -16,7 +16,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 
 interface CustomUploadButtonProps {
   onUpload: (event: ChangeEvent<HTMLInputElement>) => void;
-  onDelete?: () => void;
+  onDelete?: MouseEventHandler<HTMLButtonElement> | undefined;
   label: string;
   description?: string;
   image?: File;

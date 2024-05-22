@@ -3,6 +3,8 @@ import {
   StyledCardContainer,
   StyledContainer,
   StyledDescription,
+  StyledDuration,
+  StyledDurationContainer,
   StyledPriceContainer,
   StyledPriceTitle,
   StyledTextContainer,
@@ -12,10 +14,13 @@ import AttachMoneyOutlinedIcon from "@mui/icons-material/AttachMoneyOutlined";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { Button, Stack } from "@mui/material";
+import AccessTimeIcon from "@mui/icons-material/AccessTime";
+import { translate } from "locales/i18n";
 
 interface CompanyServiceProps {
   title: string;
   price: number;
+  duration: number;
   description?: string;
   onEditPress?: () => void;
   onDeletePress?: () => void;
@@ -27,12 +32,22 @@ const CompanyService: React.FC<CompanyServiceProps> = ({
   title,
   onDeletePress,
   onEditPress,
+  duration,
 }) => {
   return (
     <StyledContainer>
       <StyledCardContainer>
         <StyledTextContainer>
           <StyledTitle>{title}</StyledTitle>
+          <StyledDurationContainer>
+            <StyledDuration>
+              {translate("common.minute_short", { text: duration })}
+            </StyledDuration>
+            <AccessTimeIcon
+              onClick={onEditPress}
+              style={{ height: 15, width: 15 }}
+            />
+          </StyledDurationContainer>
           {!!description && (
             <StyledDescription>{description}</StyledDescription>
           )}

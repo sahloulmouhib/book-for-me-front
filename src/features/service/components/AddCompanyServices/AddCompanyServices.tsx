@@ -11,16 +11,17 @@ import {
 import { spacing } from "utils/dimensions";
 import CompanyServiceList from "features/service/components/CompanyServiceList/CompanyServiceList";
 import {
-  ADD_COMPANY_SERVICE_TITTLE_WIDTH,
+  ADD_COMPANY_SERVICE_DURATION_WIDTH,
   ADD_COMPANY_SERVICE_PRICE_WIDTH,
 } from "features/service/utils/service.constants";
-import { AddCompanyServiceSchemaType } from "features/service/forms/service.addCompanyServices";
-import { UseFormReturn } from "react-hook-form";
+import { translate } from "locales/i18n";
 interface AddCompanyServicesProps {
-  form: UseFormReturn<AddCompanyServiceSchemaType>;
+  addCompanyServicesForm: ReturnType<typeof useAddCompanyServices>;
 }
 
-const AddCompanyServices: React.FC<AddCompanyServicesProps> = ({ form }) => {
+const AddCompanyServices: React.FC<AddCompanyServicesProps> = ({
+  addCompanyServicesForm,
+}) => {
   const {
     register,
     onAddService,
@@ -29,21 +30,28 @@ const AddCompanyServices: React.FC<AddCompanyServicesProps> = ({ form }) => {
     editService,
     errors,
     isValid,
-  } = useAddCompanyServices(form);
+  } = addCompanyServicesForm;
   return (
     <Box width={"65%"}>
       <Stack spacing={spacing.S}>
+        <CustomTextFieldInput
+          label={translate("service.title")}
+          placeholder={translate("service.title")}
+          register={register("title")}
+          errorMessage={errors.title?.message}
+        />
         <StyledFormContainer>
           <CustomTextFieldInput
-            label="Title"
-            placeholder="Title"
-            width={ADD_COMPANY_SERVICE_TITTLE_WIDTH}
-            register={register("title")}
-            errorMessage={errors.title?.message}
+            label={translate("service.duration")}
+            placeholder={translate("service.duration")}
+            width={ADD_COMPANY_SERVICE_DURATION_WIDTH}
+            register={register("duration", { valueAsNumber: true })}
+            isNumber
+            errorMessage={errors.duration?.message}
           />
           <CustomTextFieldInput
-            label="Price"
-            placeholder="Price"
+            label={translate("service.price")}
+            placeholder={translate("service.price")}
             width={ADD_COMPANY_SERVICE_PRICE_WIDTH}
             isNumber
             register={register("price", { valueAsNumber: true })}
@@ -52,9 +60,8 @@ const AddCompanyServices: React.FC<AddCompanyServicesProps> = ({ form }) => {
         </StyledFormContainer>
         <CustomTextFieldInput
           isMultiline
-          label="Description"
-          placeholder="Description"
-          width={"100%"}
+          label={translate("service.description")}
+          placeholder={translate("service.description")}
           register={register("description")}
           errorMessage={errors.description?.message}
         />

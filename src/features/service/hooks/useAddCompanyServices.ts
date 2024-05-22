@@ -33,6 +33,7 @@ const useAddCompanyServices = (
     if (service) {
       setValue("title", service.title, { shouldValidate: true });
       setValue("price", service.price, { shouldValidate: true });
+      setValue("duration", service.duration, { shouldValidate: true });
       service.description &&
         setValue("description", service.description, { shouldValidate: true });
     }

@@ -13,6 +13,7 @@ import {
   addCompanyServiceDefaultValues,
   addCompanyServiceSchema,
 } from "features/service/forms/service.addCompanyServices";
+import useAddCompanyServices from "features/service/hooks/useAddCompanyServices";
 import { useForm } from "react-hook-form";
 
 const useCreateCompanyForm = () => {
@@ -21,6 +22,7 @@ const useCreateCompanyForm = () => {
     resolver: zodResolver(addCompanyDetailsSchema),
     defaultValues: addCompanyDetailsDefaultValues,
   });
+  const isAddCompanyDetailsFormValid = addCompanyDetailsForm.formState.isValid;
 
   const addCompanyAvailabilitiesForm =
     useForm<AddCompanyAvailabilitiesSchemaType>({
@@ -28,17 +30,25 @@ const useCreateCompanyForm = () => {
       resolver: zodResolver(addCompanyAvailabilitiesSchema),
       defaultValues: addCompanyAvailabilitiesDefaultValues,
     });
+  const isAddCompanyAvailabilitiesFormValid =
+    addCompanyAvailabilitiesForm.formState.isValid;
 
-  const addCompanyServicesForm = useForm({
+  const addCompanyServiceForm = useForm({
     mode: "onChange",
     defaultValues: addCompanyServiceDefaultValues,
     resolver: zodResolver(addCompanyServiceSchema),
   });
+  const addCompanyServicesForm = useAddCompanyServices(addCompanyServiceForm);
+  const isAddCompanyServicesFormValid =
+    addCompanyServicesForm.addedServices.length > 0;
 
   return {
     addCompanyDetailsForm,
     addCompanyAvailabilitiesForm,
     addCompanyServicesForm,
+    isAddCompanyDetailsFormValid,
+    isAddCompanyAvailabilitiesFormValid,
+    isAddCompanyServicesFormValid,
   };
 };
 

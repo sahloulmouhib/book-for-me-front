@@ -21,6 +21,7 @@ const CompanyServiceList: React.FC<CompanyServiceListProps> = ({
           key={service.id}
           title={service.title}
           price={service.price}
+          duration={service.duration}
           description={service.description}
           onDeletePress={() => deleteService(service.id)}
           onEditPress={() => editService(service.id)}

@@ -17,15 +17,31 @@ const availabilitiesSchema = z.array(
 );
 export type AvailabilitiesSchemaType = z.infer<typeof availabilitiesSchema>;
 
-export const addCompanyAvailabilitiesSchema = z.object({
-  monday: availabilitiesSchema,
-  tuesday: availabilitiesSchema,
-  wednesday: availabilitiesSchema,
-  thursday: availabilitiesSchema,
-  friday: availabilitiesSchema,
-  saturday: availabilitiesSchema,
-  sunday: availabilitiesSchema,
-});
+export const addCompanyAvailabilitiesSchema = z
+  .object({
+    monday: availabilitiesSchema,
+    tuesday: availabilitiesSchema,
+    wednesday: availabilitiesSchema,
+    thursday: availabilitiesSchema,
+    friday: availabilitiesSchema,
+    saturday: availabilitiesSchema,
+    sunday: availabilitiesSchema,
+  })
+  .refine((weekDayObject) => {
+    let isValid = false;
+    Object.keys(weekDayObject).forEach((key) => {
+      const weekDay = weekDayObject[key as keyof typeof weekDayObject];
+      if (
+        weekDay.length &&
+        weekDay[0].endTime !== null &&
+        weekDay[0].startTime !== null
+      ) {
+        isValid = true;
+        return;
+      }
+    });
+    return isValid;
+  });
 
 export type AddCompanyAvailabilitiesSchemaType = z.infer<
   typeof addCompanyAvailabilitiesSchema

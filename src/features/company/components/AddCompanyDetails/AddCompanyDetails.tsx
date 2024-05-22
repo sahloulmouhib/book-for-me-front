@@ -3,7 +3,7 @@ import CustomTextFieldInput from "components/CustomTextField/CustomTextField";
 import CustomUploadButton from "components/CustomUploadButton/CustomUploadButton";
 import { AddCompanyDetailsSchemaType } from "features/company/forms/company.addCompanyDetailsFormConfig";
 import { translate } from "locales/i18n";
-import React, { ChangeEvent } from "react";
+import React, { ChangeEvent, MouseEventHandler } from "react";
 import { UseFormReturn } from "react-hook-form";
 import { spacing } from "utils/dimensions";
 
@@ -21,7 +21,9 @@ const AddCompanyDetails: React.FC<AddCompanyDetailsProps> = ({ form }) => {
     }
   };
 
-  const deleteImage = () => {
+  const deleteImage: MouseEventHandler<HTMLButtonElement> = (event) => {
+    event.preventDefault();
+    event.stopPropagation();
     setValue("image", undefined);
   };
 

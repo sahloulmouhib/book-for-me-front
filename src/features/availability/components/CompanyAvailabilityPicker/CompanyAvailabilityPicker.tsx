@@ -27,7 +27,7 @@ const CompanyAvailabilityPicker: React.FC<CompanyAvailabilityPickerProps> = ({
     formState: UseFormStateReturn<AddCompanyAvailabilitiesSchemaType>,
     value: AvailabilitiesSchemaType
   ) => {
-    return formState.errors.monday?.[value.length - 1]?.message;
+    return formState.errors[name]?.[value.length - 1]?.message;
   };
 
   const checkIfFormIsValid = (
@@ -35,7 +35,7 @@ const CompanyAvailabilityPicker: React.FC<CompanyAvailabilityPickerProps> = ({
     value: AvailabilitiesSchemaType
   ) => {
     return (
-      !formState.errors.monday &&
+      !formState.errors[name] &&
       value.length > 0 &&
       value[value.length - 1].startTime !== null &&
       value[value.length - 1].endTime !== null

@@ -1,4 +1,9 @@
 export const en = {
+  common: {
+    back: "Back",
+    next: "Next",
+    minute_short: "{{text}} min",
+  },
   errors: {
     server: "Something went wrong, please try again later",
   },
@@ -13,7 +18,13 @@ export const en = {
       sunday: "Sunday",
     },
   },
-
+  global: {
+    create_company: {
+      add_company_details: "Add company details",
+      add_company_availabilities: "Add company availabilities",
+      add_company_services: "Add company services",
+    },
+  },
   auth: {
     sign_in: {
       title: "Sign in to your account",
@@ -70,6 +81,8 @@ export const en = {
   service: {
     price: "Price",
     title: "Title",
+    duration: "Duration in min",
+    description: "Description",
   },
   validation: {
     required: "{{field}} is required",

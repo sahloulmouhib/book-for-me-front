@@ -23,9 +23,8 @@ export const StyledCardContainer = styled(Stack)(({ theme }) => ({
 
 export const StyledTitle = styled(Typography)(({ theme }) => ({
   color: theme.palette.common.black,
-  fontSize: fontSize.XS,
+  fontSize: fontSize.S,
   fontWeight: "500",
-  width: "100%",
   wordWrap: "break-word",
 }));
 
@@ -46,11 +45,22 @@ export const StyledPriceContainer = styled(Stack)(() => ({
   flexDirection: "row",
   justifyItems: "flex-end",
   alignItems: "center",
-  width: "5%",
 }));
 
 export const StyledTextContainer = styled(Stack)(() => ({
   justifyItems: "center",
   gap: spacing.S,
-  width: "95%",
+  width: "70%",
+}));
+
+export const StyledDurationContainer = styled(Stack)(() => ({
+  flexDirection: "row",
+  width: "70%",
+  gap: spacing.M,
+  alignItems: "center",
+}));
+
+export const StyledDuration = styled(Typography)(() => ({
+  fontSize: fontSize.S,
+  fontWeight: "light",
 }));

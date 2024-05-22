@@ -38,7 +38,7 @@ export const addCompanyServiceSchema = z.object({
     .max(
       MAX_MULTILINE_STRING_LENGTH,
       translate("validation.string.max", {
-        field: translate("company.create_company.description"),
+        field: translate("service.description"),
         max: MAX_MULTILINE_STRING_LENGTH,
       })
     )
@@ -58,6 +58,21 @@ export const addCompanyServiceSchema = z.object({
         min: MIN_POSITIVE_NUMBER,
       }),
     }),
+  duration: z
+    .number({
+      invalid_type_error: translate("validation.required", {
+        field: translate("service.duration"),
+      }),
+      required_error: translate("validation.required", {
+        field: translate("service.duration"),
+      }),
+    })
+    .positive({
+      message: translate("validation.number.min", {
+        field: translate("service.duration"),
+        min: MIN_POSITIVE_NUMBER,
+      }),
+    }),
 });
 
 export type AddCompanyServiceSchemaType = z.infer<
@@ -68,4 +83,5 @@ export const addCompanyServiceDefaultValues: AddCompanyServiceSchemaType = {
   title: "",
   description: "",
   price: 0,
+  duration: 0,
 };
