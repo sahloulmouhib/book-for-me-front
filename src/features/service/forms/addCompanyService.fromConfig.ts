@@ -7,6 +7,7 @@ import {
   MIN_STRING_REQUIRED_LENGTH,
 } from "utils/constants";
 import { z } from "zod";
+import { MIN_SERVICE_DURATION_MINUTES } from "../utils/service.constants";
 
 export const addCompanyServiceSchema = z.object({
   title: z
@@ -70,7 +71,7 @@ export const addCompanyServiceSchema = z.object({
     .positive({
       message: translate("validation.number.min", {
         field: translate("service.duration"),
-        min: MIN_POSITIVE_NUMBER,
+        min: MIN_SERVICE_DURATION_MINUTES,
       }),
     }),
 });

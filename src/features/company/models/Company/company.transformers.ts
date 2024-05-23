@@ -4,7 +4,7 @@ import {
   CompanyDetailsPayload,
   CompanyResponse,
 } from "./company.types";
-import { AddCompanyDetailsSchemaType } from "features/company/forms/addCompanyDetails.FormConfig";
+import { AddCompanyDetailsSchemaType } from "features/company/forms/addCompanyDetails.formConfig";
 
 export const encodeCompanyDetails = (
   companyDetails: AddCompanyDetailsSchemaType

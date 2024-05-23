@@ -13,7 +13,7 @@ import {
   AddCompanyDetailsSchemaType,
   addCompanyDetailsSchema,
   addCompanyDetailsDefaultValues,
-} from "features/company/forms/addCompanyDetails.FormConfig";
+} from "features/company/forms/addCompanyDetails.formConfig";
 import {
   addCompanyServiceDefaultValues,
   addCompanyServiceSchema,
@@ -21,6 +21,7 @@ import {
 import useAddCompanyServices from "features/service/hooks/useAddCompanyServices";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
+import { useGlobalStore } from "store/global.store";
 
 const useCreateCompanyForm = () => {
   const addCompanyDetailsForm = useForm<AddCompanyDetailsSchemaType>({
@@ -64,17 +65,23 @@ const useCreateCompanyForm = () => {
     mutationFn: addCompanyImageMutationFn,
   });
 
+  const { showLoader, hideLoader } = useGlobalStore();
+
   const handleCreateCompany = async () => {
-    const data = getFormData();
     try {
+      showLoader();
+      const data = getFormData();
       const result = await createCompanyApi(data);
       const companyId = result.companyId;
       const { image } = addCompanyDetailsForm.getValues();
       image && (await addCompanyImageApi({ companyId, image }));
-
+      // TODO: add to i18n
       toast.success("Company created successfully");
     } catch (error) {
+      // TODO: add to i18n
       toast.error("Failed to create company");
+    } finally {
+      hideLoader();
     }
   };
 

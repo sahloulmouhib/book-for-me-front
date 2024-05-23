@@ -3,7 +3,7 @@ import SignInPage from "pages/SignInPage/SignInPage";
 import SignUpPage from "pages/SignUpPage/SignUpPage";
 import { DASHBOARD_PATH, SIGN_IN_PATH, SIGN_UP_PATH } from "./routes.paths";
 import CreateCompanyStepper from "components/CreateCompanyStepper/CreateCompanyStepper";
-
+import Dashboard from "pages/Dashboard/Dashboard";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -20,5 +20,9 @@ export const router = createBrowserRouter([
   {
     path: DASHBOARD_PATH,
     element: <CreateCompanyStepper />,
+  },
+  {
+    path: "test",
+    element: <Dashboard />,
   },
 ]);
