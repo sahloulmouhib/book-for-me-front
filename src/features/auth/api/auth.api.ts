@@ -1,5 +1,4 @@
 import { sendAxiosRequest } from "api/axios";
-import { signUpSchemaType } from "../forms/auth.signUpFormConfig";
 import { authEndpoints } from "./auth.endpoints";
 import {
   decodeSignUp,
@@ -9,8 +8,9 @@ import {
   decodeSignIn,
   encodeSignIn,
 } from "../models/SignIn/signIn.transformers";
-import { SignInSchemaType } from "../forms/auth.signInFormConfig";
+import { SignInSchemaType } from "../forms/signIn.formConfig";
 import { HttpMethodEnum } from "api/api.enums";
+import { signUpSchemaType } from "../forms/signUp.formConfig";
 
 export const signUpMutationFn = async (data: signUpSchemaType) => {
   return sendAxiosRequest({

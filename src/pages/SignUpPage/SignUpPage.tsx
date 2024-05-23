@@ -8,7 +8,7 @@ import {
   signUpSchemaType,
   userSignUpDefaultValues,
   signUpSchema,
-} from "features/auth/forms/auth.signUpFormConfig";
+} from "features/auth/forms/signUp.formConfig";
 import { useMutation } from "@tanstack/react-query";
 import { signUpMutationFn } from "features/auth/api/auth.api";
 import { useNavigate } from "react-router-dom";

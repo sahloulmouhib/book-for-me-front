@@ -9,7 +9,7 @@ import {
 import {
   AddCompanyAvailabilitiesSchemaType,
   AvailabilitiesSchemaType,
-} from "features/availability/forms/availability.addCompanyAvailabilitiesFormConfig";
+} from "features/availability/forms/addCompanyAvailabilities.formConfig";
 import { Control, Controller, UseFormStateReturn } from "react-hook-form";
 
 export interface CompanyAvailabilityPickerProps {

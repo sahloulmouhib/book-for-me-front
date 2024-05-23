@@ -1,6 +1,6 @@
-import { AddCompanyAvailabilitiesSchemaType } from "features/availability/forms/availability.addCompanyAvailabilitiesFormConfig";
+import { AddCompanyAvailabilitiesSchemaType } from "features/availability/forms/addCompanyAvailabilities.formConfig";
 import { AvailabilityPayload } from "features/availability/models/Availability/availability.types";
-import { AddCompanyDetailsSchemaType } from "features/company/forms/company.addCompanyDetailsFormConfig";
+import { AddCompanyDetailsSchemaType } from "features/company/forms/addCompanyDetails.FormConfig";
 import { CompanyDetailsPayload } from "features/company/models/Company/company.types";
 import {
   Service,

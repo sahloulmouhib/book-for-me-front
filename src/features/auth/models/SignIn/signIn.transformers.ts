@@ -1,4 +1,4 @@
-import { SignInSchemaType } from "features/auth/forms/auth.signInFormConfig";
+import { SignInSchemaType } from "features/auth/forms/signIn.formConfig";
 import { decodeSignUp } from "../SignUp/signUp.transformers";
 import { SignInPayload } from "./signIn.types";
 

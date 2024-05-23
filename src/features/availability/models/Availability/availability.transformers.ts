@@ -1,7 +1,7 @@
 import {
   AddCompanyAvailabilitiesSchemaType,
   AvailabilitiesSchemaType,
-} from "../../forms/availability.addCompanyAvailabilitiesFormConfig";
+} from "../../forms/addCompanyAvailabilities.formConfig";
 import {
   AvailabilityPayload,
   AvailabilitySlotPayload,

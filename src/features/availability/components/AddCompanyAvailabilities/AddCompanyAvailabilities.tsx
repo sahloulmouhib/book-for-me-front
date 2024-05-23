@@ -1,6 +1,6 @@
 import React from "react";
 import { UseFormReturn } from "react-hook-form";
-import { AddCompanyAvailabilitiesSchemaType } from "features/availability/forms/availability.addCompanyAvailabilitiesFormConfig";
+import { AddCompanyAvailabilitiesSchemaType } from "features/availability/forms/addCompanyAvailabilities.formConfig";
 import CompanyAvailabilityPicker, {
   CompanyAvailabilityPickerProps,
 } from "../CompanyAvailabilityPicker/CompanyAvailabilityPicker";

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Service } from "../models/Service/service.types";
-import { AddCompanyServiceSchemaType } from "../forms/service.addCompanyServices";
+import { AddCompanyServiceSchemaType } from "../forms/addCompanyService.fromConfig";
 import { UseFormReturn } from "react-hook-form";
 
 const useAddCompanyServices = (

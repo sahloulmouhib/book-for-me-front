@@ -4,7 +4,7 @@ import {
   AddCompanyAvailabilitiesSchemaType,
   addCompanyAvailabilitiesSchema,
   addCompanyAvailabilitiesDefaultValues,
-} from "features/availability/forms/availability.addCompanyAvailabilitiesFormConfig";
+} from "features/availability/forms/addCompanyAvailabilities.formConfig";
 import {
   addCompanyImageMutationFn,
   createCompanyMutationFn,
@@ -13,11 +13,11 @@ import {
   AddCompanyDetailsSchemaType,
   addCompanyDetailsSchema,
   addCompanyDetailsDefaultValues,
-} from "features/company/forms/company.addCompanyDetailsFormConfig";
+} from "features/company/forms/addCompanyDetails.FormConfig";
 import {
   addCompanyServiceDefaultValues,
   addCompanyServiceSchema,
-} from "features/service/forms/service.addCompanyServices";
+} from "features/service/forms/addCompanyService.fromConfig";
 import useAddCompanyServices from "features/service/hooks/useAddCompanyServices";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";

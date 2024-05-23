@@ -7,7 +7,7 @@ import {
   SignInSchemaType,
   signInDefaultValues,
   signInSchema,
-} from "features/auth/forms/auth.signInFormConfig";
+} from "features/auth/forms/signIn.formConfig";
 import { useForm } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
 import { signInMutationFn } from "features/auth/api/auth.api";

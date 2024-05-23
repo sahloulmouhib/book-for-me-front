@@ -2,7 +2,7 @@ import React from "react";
 
 import { StyledContainer } from "./startEndTimePicker.styles";
 import { Button, Typography } from "@mui/material";
-import { AvailabilitiesSchemaType } from "features/availability/forms/availability.addCompanyAvailabilitiesFormConfig";
+import { AvailabilitiesSchemaType } from "features/availability/forms/addCompanyAvailabilities.formConfig";
 import { AddCircleOutlined, CancelRounded } from "@mui/icons-material";
 import CustomTimePicker from "components/CustomTimePicker/CustomTimePicker";
 import { translate } from "locales/i18n";

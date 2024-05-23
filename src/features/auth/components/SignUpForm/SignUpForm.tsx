@@ -17,7 +17,7 @@ import OrDivider from "../OrDivider/OrDivider";
 import { FieldErrors, UseFormRegister } from "react-hook-form";
 import { translate } from "locales/i18n";
 import { Stack } from "@mui/material";
-import { signUpSchemaType } from "features/auth/forms/auth.signUpFormConfig";
+import { signUpSchemaType } from "features/auth/forms/signUp.formConfig";
 import { SMALL_BOX_WIDTH } from "utils/dimensions";
 import { CustomCheckbox } from "components/CustomCheckbox/CustomCheckbox";
 

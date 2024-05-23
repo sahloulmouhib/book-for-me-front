@@ -1,7 +1,7 @@
 import { Stack } from "@mui/material";
 import CustomTextFieldInput from "components/CustomTextField/CustomTextField";
 import CustomUploadButton from "components/CustomUploadButton/CustomUploadButton";
-import { AddCompanyDetailsSchemaType } from "features/company/forms/company.addCompanyDetailsFormConfig";
+import { AddCompanyDetailsSchemaType } from "features/company/forms/addCompanyDetails.FormConfig";
 import { translate } from "locales/i18n";
 import React, { ChangeEvent, MouseEventHandler } from "react";
 import { UseFormReturn } from "react-hook-form";
