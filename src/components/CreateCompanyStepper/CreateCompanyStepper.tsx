@@ -28,6 +28,7 @@ const CreateCompanyStepper: React.FC = () => {
     isAddCompanyAvailabilitiesFormValid,
     isAddCompanyDetailsFormValid,
     isAddCompanyServicesFormValid,
+    handleCreateCompany,
   } = useCreateCompanyForm();
 
   const steps: StepperStep[] = React.useMemo(
@@ -93,7 +94,11 @@ const CreateCompanyStepper: React.FC = () => {
             <StyledButtonSeparator />
             <CustomButton
               width={STEPPER_BUTTON_WIDTH}
-              onClick={handleNext}
+              onClick={
+                steps.length - 1 === activeStep
+                  ? handleCreateCompany
+                  : handleNext
+              }
               title={translate("common.next")}
               isDisabled={!steps[activeStep].isValid}
             />

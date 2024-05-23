@@ -1,9 +1,14 @@
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useMutation } from "@tanstack/react-query";
 import {
   AddCompanyAvailabilitiesSchemaType,
   addCompanyAvailabilitiesSchema,
   addCompanyAvailabilitiesDefaultValues,
 } from "features/availability/forms/availability.addCompanyAvailabilitiesFormConfig";
+import {
+  addCompanyImageMutationFn,
+  createCompanyMutationFn,
+} from "features/company/api/company.api";
 import {
   AddCompanyDetailsSchemaType,
   addCompanyDetailsSchema,
@@ -15,6 +20,7 @@ import {
 } from "features/service/forms/service.addCompanyServices";
 import useAddCompanyServices from "features/service/hooks/useAddCompanyServices";
 import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 
 const useCreateCompanyForm = () => {
   const addCompanyDetailsForm = useForm<AddCompanyDetailsSchemaType>({
@@ -42,6 +48,36 @@ const useCreateCompanyForm = () => {
   const isAddCompanyServicesFormValid =
     addCompanyServicesForm.addedServices.length > 0;
 
+  const getFormData = () => {
+    return {
+      companyDetails: addCompanyDetailsForm.getValues(),
+      availabilities: addCompanyAvailabilitiesForm.getValues(),
+      services: addCompanyServicesForm.addedServices,
+    };
+  };
+
+  const { mutateAsync: createCompanyApi } = useMutation({
+    mutationFn: createCompanyMutationFn,
+  });
+
+  const { mutateAsync: addCompanyImageApi } = useMutation({
+    mutationFn: addCompanyImageMutationFn,
+  });
+
+  const handleCreateCompany = async () => {
+    const data = getFormData();
+    try {
+      const result = await createCompanyApi(data);
+      const companyId = result.companyId;
+      const { image } = addCompanyDetailsForm.getValues();
+      image && (await addCompanyImageApi({ companyId, image }));
+
+      toast.success("Company created successfully");
+    } catch (error) {
+      toast.error("Failed to create company");
+    }
+  };
+
   return {
     addCompanyDetailsForm,
     addCompanyAvailabilitiesForm,
@@ -49,6 +85,7 @@ const useCreateCompanyForm = () => {
     isAddCompanyDetailsFormValid,
     isAddCompanyAvailabilitiesFormValid,
     isAddCompanyServicesFormValid,
+    handleCreateCompany,
   };
 };
 
