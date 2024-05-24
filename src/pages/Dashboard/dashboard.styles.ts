@@ -1,6 +1,5 @@
 import { styled, Theme, CSSObject } from "@mui/material/styles";
 import MuiDrawer from "@mui/material/Drawer";
-import MuiAppBar, { AppBarProps as MuiAppBarProps } from "@mui/material/AppBar";
 import {
   Box,
   IconButton,
@@ -9,14 +8,21 @@ import {
   ListItemIcon,
   ListItemText,
 } from "@mui/material";
-import { DRAWER_WIDTH, distance } from "utils/dimensions";
+import {
+  DRAWER_CLOSED_WIDTH,
+  DRAWER_WIDTH,
+  distance,
+  fontSize,
+} from "utils/dimensions";
 // TODO: replace spacing with distance
-interface AppBarProps extends MuiAppBarProps {
-  open?: boolean;
-}
 
 interface ToggleDrawerProps {
-  open: boolean;
+  open?: boolean;
+  isLogout?: boolean;
+}
+
+interface DrawerItemProps {
+  isSelected: boolean;
 }
 
 const openedMixin = (theme: Theme): CSSObject => ({
@@ -34,10 +40,7 @@ const closedMixin = (theme: Theme): CSSObject => ({
     duration: theme.transitions.duration.leavingScreen,
   }),
   overflowX: "hidden",
-  width: `calc(${theme.spacing(7)} + 1px)`,
-  [theme.breakpoints.up("sm")]: {
-    width: `calc(${theme.spacing(8)} + 1px)`,
-  },
+  width: DRAWER_CLOSED_WIDTH,
 });
 
 export const StyledContainer = styled(Box)(() => ({
@@ -61,27 +64,8 @@ export const StyledDrawer = styled(MuiDrawer, {
   }),
 }));
 
-export const StyledAppBar = styled(MuiAppBar, {
-  shouldForwardProp: (prop) => prop !== "open",
-})<AppBarProps>(({ theme, open }) => ({
-  zIndex: theme.zIndex.drawer + 1,
-  transition: theme.transitions.create(["width", "margin"], {
-    easing: theme.transitions.easing.sharp,
-    duration: theme.transitions.duration.leavingScreen,
-  }),
-  ...(open && {
-    marginLeft: DRAWER_WIDTH,
-    width: `calc(100% - ${DRAWER_WIDTH}px)`,
-    transition: theme.transitions.create(["width", "margin"], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-  }),
-}));
-
 export const StyledIconButton = styled(IconButton)<ToggleDrawerProps>(
   ({ open }) => ({
-    marginRight: distance.XL,
     ...(open && {
       display: "none",
     }),
@@ -90,22 +74,35 @@ export const StyledIconButton = styled(IconButton)<ToggleDrawerProps>(
 
 export const StyledListItemButton = styled(ListItemButton)<ToggleDrawerProps>(
   ({ open }) => ({
-    minHeight: "48px",
     justifyContent: open ? "initial" : "center",
+    gap: open ? distance.L : 0,
+    marginBlock: distance.XL,
+    paddingInline: distance.XL,
   })
 );
 
-export const StyledListItemIcon = styled(ListItemIcon)<ToggleDrawerProps>(
-  ({ open }) => ({
+export const StyledListItemIcon = styled(ListItemIcon)<DrawerItemProps>(
+  ({ theme, isSelected }) => ({
     minWidth: "0px",
     justifyContent: "center",
-    marginRight: open ? 3 : "auto",
+    color: isSelected ? theme.palette.common.white : theme.palette.grey[700],
+    border: `0.1px solid ${theme.palette.grey[400]}`,
+    borderRadius: distance.S,
+    padding: distance.XS,
+    backgroundColor: isSelected
+      ? theme.palette.primary.main
+      : theme.palette.grey[200],
   })
 );
 
 export const StyledListItemText = styled(ListItemText)<ToggleDrawerProps>(
-  ({ open }) => ({
+  ({ open, theme, isLogout }) => ({
     opacity: open ? 1 : 0,
+    "& .MuiListItemText-primary": {
+      fontSize: isLogout ? fontSize.S : fontSize.M,
+      fontWeight: "600",
+      color: isLogout ? theme.palette.error.main : theme.palette.grey[600],
+    },
   })
 );
 
@@ -113,16 +110,30 @@ export const StyledListItem = styled(ListItem)(() => ({
   display: "block",
 }));
 
-export const StyledDashboardContainer = styled(Box)(() => ({
+export const StyledDashboardContainer = styled(Box)(({ theme }) => ({
   flexGrow: 1,
+  height: "100vh",
   padding: distance.XL,
+  backgroundColor: theme.palette.grey[300],
 }));
 
-export const StyledDrawerHeader = styled("div")(({ theme }) => ({
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "flex-end",
-  padding: theme.spacing(0, 1),
-  // necessary for content to be below app bar
-  ...theme.mixins.toolbar,
+export const StyledDrawerHeader = styled("div")<ToggleDrawerProps>(
+  ({ theme, open }) => ({
+    display: "flex",
+    alignItems: "center",
+    justifyContent: open ? "end" : "center",
+    padding: theme.spacing(0, 1),
+    // necessary for content to be below app bar
+    ...theme.mixins.toolbar,
+  })
+);
+
+export const StyledLogoutListItemIcon = styled(ListItemIcon)(({ theme }) => ({
+  minWidth: "0px",
+  justifyContent: "center",
+  color: theme.palette.error.main,
+  border: `0.1px solid transparent`,
+  borderRadius: distance.S,
+  padding: distance.XS,
+  backgroundColor: theme.palette.error.light,
 }));

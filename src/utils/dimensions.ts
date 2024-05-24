@@ -42,4 +42,5 @@ export const TIME_PICKER_HEIGHT = 40;
 
 export const STEPPER_BUTTON_WIDTH = 120;
 
-export const DRAWER_WIDTH = 240;
+export const DRAWER_WIDTH = 250;
+export const DRAWER_CLOSED_WIDTH = 100;

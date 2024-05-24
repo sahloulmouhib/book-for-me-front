@@ -25,18 +25,18 @@ export const LightColorsConfig: PaletteOptions = {
   },
   error: {
     light: "#ffe6e6",
-    main: "#DA1414",
+    main: "#FA5A7D",
     dark: "#9B0000",
   },
 
   grey: {
     50: "#FFFFFF",
     100: "#FCFCFD",
-    200: "#F5F7FB",
-    300: "#ECEDF1",
+    200: "#F8FBFF",
+    300: "#F2F7FF",
     400: "#CCD9E5",
     500: "#ABB2BC",
-    600: "#AAB6CE",
+    600: "#3B4D7D",
     700: "#7A8096",
     800: "#252427",
     900: "#000000",
