@@ -1,7 +1,6 @@
 import * as React from "react";
 import List from "@mui/material/List";
 import CssBaseline from "@mui/material/CssBaseline";
-import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
@@ -26,7 +25,44 @@ import FolderCopyIcon from "@mui/icons-material/FolderCopy";
 import PeopleAltSharpIcon from "@mui/icons-material/PeopleAltSharp";
 import AccountCircleSharpIcon from "@mui/icons-material/AccountCircleSharp";
 import MeetingRoomIcon from "@mui/icons-material/MeetingRoom";
-export default function MiniDrawer() {
+import { Outlet, useNavigate } from "react-router-dom";
+import {
+  BOOKINGS_PATH,
+  CLIENTS_PATH,
+  HOME_PATH,
+  PROFILE_PATH,
+  SERVICES_PATH,
+} from "routes/routes.paths";
+
+const DASHBOARD_ITEMS: DrawerItem[] = [
+  {
+    title: "Home",
+    icon: <HomeRoundedIcon />,
+    path: HOME_PATH,
+  },
+  {
+    title: "Bookings",
+    icon: <EventAvailableRoundedIcon />,
+    path: BOOKINGS_PATH,
+  },
+  {
+    title: "Services",
+    icon: <FolderCopyIcon />,
+    path: SERVICES_PATH,
+  },
+  {
+    title: "Clients",
+    icon: <PeopleAltSharpIcon />,
+    path: CLIENTS_PATH,
+  },
+  {
+    title: "Profile",
+    icon: <AccountCircleSharpIcon />,
+    path: PROFILE_PATH,
+  },
+];
+
+const DashBoard: React.FC = () => {
   const [open, setOpen] = React.useState(false);
 
   const handleDrawerOpen = () => {
@@ -37,38 +73,12 @@ export default function MiniDrawer() {
     setOpen(false);
   };
 
-  const dashboardItems: DrawerItem[] = [
-    {
-      title: "Home",
-      icon: <HomeRoundedIcon />,
-      element: <Typography>Home</Typography>,
-    },
-    {
-      title: "Bookings",
-      icon: <EventAvailableRoundedIcon />,
-      element: <Typography>Bookings</Typography>,
-    },
-    {
-      title: "Services",
-      icon: <FolderCopyIcon />,
-      element: <Typography>Services</Typography>,
-    },
-    {
-      title: "Clients",
-      icon: <PeopleAltSharpIcon />,
-      element: <Typography>Clients</Typography>,
-    },
-    {
-      title: "Profile",
-      icon: <AccountCircleSharpIcon />,
-      element: <Typography>Profile</Typography>,
-    },
-  ];
-
   const [selectedDrawerItemIndex, setSelectedDrawerItemIndex] = useState(0);
+  const navigate = useNavigate();
 
   const handleDrawerItemClick = (index: number) => () => {
     setSelectedDrawerItemIndex(index);
+    navigate(DASHBOARD_ITEMS[index].path);
   };
   return (
     <StyledContainer>
@@ -81,7 +91,7 @@ export default function MiniDrawer() {
         </StyledDrawerHeader>
         <Divider />
         <List style={{ flexGrow: 1 }}>
-          {dashboardItems.map((item, index) => (
+          {DASHBOARD_ITEMS.map((item, index) => (
             <StyledListItem key={item.title} disablePadding>
               <StyledListItemButton
                 selected={selectedDrawerItemIndex === index}
@@ -110,8 +120,10 @@ export default function MiniDrawer() {
       </StyledDrawer>
       <StyledDashboardContainer component="main">
         <StyledDrawerHeader open={open} />
-        {dashboardItems[selectedDrawerItemIndex].element}
+        <Outlet />
       </StyledDashboardContainer>
     </StyledContainer>
   );
-}
+};
+
+export default DashBoard;
