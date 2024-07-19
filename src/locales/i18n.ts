@@ -21,7 +21,8 @@ i18n
     },
   })
   .catch((err) => {
-    console.log(err);
+    // eslint-disable-next-line no-console
+    console.log("i18n error", err);
   });
 
 /**

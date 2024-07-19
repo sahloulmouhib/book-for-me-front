@@ -1,6 +1,29 @@
 export const en = {
+  common: {
+    back: "Back",
+    next: "Next",
+    minute_short: "{{text}} min",
+  },
   errors: {
     server: "Something went wrong, please try again later",
+  },
+  date: {
+    week_day: {
+      monday: "Monday",
+      tuesday: "Tuesday",
+      wednesday: "Wednesday",
+      thursday: "Thursday",
+      friday: "Friday",
+      saturday: "Saturday",
+      sunday: "Sunday",
+    },
+  },
+  global: {
+    create_company: {
+      add_company_details: "Add company details",
+      add_company_availabilities: "Add company availabilities",
+      add_company_services: "Add company services",
+    },
   },
   auth: {
     sign_in: {
@@ -48,9 +71,18 @@ export const en = {
       description: "Description",
       image: "Logo or Image",
       upload_image: "Upload your company's logo or image",
-      price: "Price",
-      title: "Title",
     },
+  },
+  availability: {
+    from: "From",
+    to: "To",
+    start_time_lower_than_end_time: "Start time must be lower than end time",
+  },
+  service: {
+    price: "Price",
+    title: "Title",
+    duration: "Duration in min",
+    description: "Description",
   },
   validation: {
     required: "{{field}} is required",

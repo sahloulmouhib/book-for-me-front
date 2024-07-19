@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { StepperStep } from "../company.types";
+import { StepperStep } from "../utils/company.types";
 
 const useCreateCompanyStepper = (steps: StepperStep[]) => {
   const [activeStep, setActiveStep] = useState(0);
@@ -18,9 +18,7 @@ const useCreateCompanyStepper = (steps: StepperStep[]) => {
   const handleNext = () => {
     const newActiveStep =
       isLastStep && !isAllStepsCompleted
-        ? // It's the last step, but not all steps have been completed,
-          // find the first step that has been completed
-          steps.findIndex((_step, i) => !(i in completed))
+        ? steps.findIndex((_step, i) => !(i in completed))
         : activeStep + 1;
     setActiveStep(newActiveStep);
   };
@@ -45,6 +43,8 @@ const useCreateCompanyStepper = (steps: StepperStep[]) => {
     setCompleted({});
   };
 
+  const isBackButtonDisabled = activeStep === 0;
+
   return {
     activeStep,
     completed,
@@ -57,6 +57,7 @@ const useCreateCompanyStepper = (steps: StepperStep[]) => {
     handleStep,
     handleComplete,
     handleReset,
+    isBackButtonDisabled,
   };
 };
 

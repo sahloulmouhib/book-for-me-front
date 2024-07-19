@@ -36,3 +36,11 @@ export const distance = {
 export const BOX_WIDTH = 450;
 
 export const SMALL_BOX_WIDTH = BOX_WIDTH / 2 - distance.S;
+
+export const TIME_PICKER_WIDTH = 160;
+export const TIME_PICKER_HEIGHT = 40;
+
+export const STEPPER_BUTTON_WIDTH = 120;
+
+export const DRAWER_WIDTH = 250;
+export const DRAWER_CLOSED_WIDTH = 100;

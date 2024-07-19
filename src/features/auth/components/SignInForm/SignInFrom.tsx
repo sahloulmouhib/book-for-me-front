@@ -14,7 +14,7 @@ import CustomIconButton from "components/CustomIconButton/CustomIconButton";
 import CustomTextFieldInput from "components/CustomTextField/CustomTextField";
 import OrDivider from "../OrDivider/OrDivider";
 import { FieldErrors, UseFormRegister } from "react-hook-form";
-import { SignInSchemaType } from "features/auth/forms/auth.signInFormConfig";
+import { SignInSchemaType } from "features/auth/forms/signIn.formConfig";
 import { translate } from "locales/i18n";
 import { Stack } from "@mui/material";
 

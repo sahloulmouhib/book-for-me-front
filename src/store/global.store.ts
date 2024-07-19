@@ -1,5 +1,6 @@
 import { User } from "features/auth/models/User/user.types";
 import { create } from "zustand";
+import { persist } from "zustand/middleware";
 
 interface GlobalStoreState {
   isLoaderVisible: boolean;
@@ -12,12 +13,20 @@ interface GlobalStoreState {
   setUserAndAccessToken: (user: User, accessToken: string) => void;
 }
 
-export const useGlobalStore = create<GlobalStoreState>((set) => ({
-  isLoaderVisible: false,
-  showLoader: () => set({ isLoaderVisible: true }),
-  hideLoader: () => set({ isLoaderVisible: false }),
-  user: undefined,
-  accessToken: undefined,
-  setUser: (user) => set({ user }),
-  setUserAndAccessToken: (user, accessToken) => set({ user, accessToken }),
-}));
+export const useGlobalStore = create<GlobalStoreState>()(
+  persist(
+    (set) => ({
+      isLoaderVisible: false,
+      showLoader: () => set({ isLoaderVisible: true }),
+      hideLoader: () => set({ isLoaderVisible: false }),
+      user: undefined,
+      accessToken: undefined,
+      setUser: (user) => set({ user }),
+      setUserAndAccessToken: (user, accessToken) => set({ user, accessToken }),
+    }),
+    {
+      name: "global-store", // unique name
+      getStorage: () => localStorage, // use local getStorage
+    }
+  )
+);

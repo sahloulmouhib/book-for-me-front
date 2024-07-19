@@ -10,3 +10,11 @@ export enum HttpStatusCodeEnum {
   BadGateway = 502,
   ServiceUnavailable = 503,
 }
+
+export enum HttpMethodEnum {
+  Get = "GET",
+  Post = "POST",
+  Put = "PUT",
+  Delete = "DELETE",
+  Patch = "PATCH",
+}
