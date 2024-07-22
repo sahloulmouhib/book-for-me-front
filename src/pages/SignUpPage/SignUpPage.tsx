@@ -17,21 +17,22 @@ import { AxiosError } from "axios";
 import { HttpStatusCodeEnum } from "api/api.enums";
 import { translate } from "locales/i18n";
 import { useGlobalStore } from "store/global.store";
-import { DASHBOARD_PATH, SIGN_IN_PATH } from "routes/routes.paths";
+import { AUTH_PATH, DASHBOARD_PATH, SIGN_IN_PATH } from "routes/routes.paths";
+import { jointPaths } from "utils/helpers";
 
 const SignUpPage: React.FC = () => {
   const { showLoader, hideLoader, setUserAndAccessToken } = useGlobalStore();
   const navigate = useNavigate();
 
   const navigateToSignIn = () => {
-    navigate(SIGN_IN_PATH);
+    navigate(jointPaths([AUTH_PATH, SIGN_IN_PATH]));
   };
 
   const { mutateAsync: signUpUserApi, isPending } = useMutation({
     mutationFn: signUpMutationFn,
   });
 
-  const { register, formState, handleSubmit } = useForm({
+  const { register, formState, handleSubmit, control } = useForm({
     mode: "onChange",
     defaultValues: userSignUpDefaultValues,
     resolver: zodResolver(signUpSchema),
@@ -42,7 +43,7 @@ const SignUpPage: React.FC = () => {
     try {
       const { accessToken, user } = await signUpUserApi(data);
       setUserAndAccessToken(user, accessToken);
-      navigate(DASHBOARD_PATH);
+      navigate(jointPaths([DASHBOARD_PATH]));
     } catch (error) {
       if (
         error instanceof AxiosError &&
@@ -67,7 +68,9 @@ const SignUpPage: React.FC = () => {
   return (
     <StyledContainer>
       <SignUpCover />
+
       <SignUpForm
+        control={control}
         register={register}
         errors={errors}
         isValid={isValid}

@@ -17,14 +17,15 @@ import { AxiosError } from "axios";
 import { HttpStatusCodeEnum } from "api/api.enums";
 import { toast } from "react-toastify";
 import { translate } from "locales/i18n";
-import { DASHBOARD_PATH, SIGN_UP_PATH } from "routes/routes.paths";
+import { AUTH_PATH, DASHBOARD_PATH, SIGN_UP_PATH } from "routes/routes.paths";
+import { jointPaths } from "utils/helpers";
 
 const SignInPage: React.FC = () => {
   const { showLoader, hideLoader, setUserAndAccessToken } = useGlobalStore();
   const navigate = useNavigate();
 
   const navigateToSignUp = () => {
-    navigate(SIGN_UP_PATH);
+    navigate(jointPaths([AUTH_PATH, SIGN_UP_PATH]));
   };
 
   const { register, formState, handleSubmit } = useForm({
@@ -42,7 +43,7 @@ const SignInPage: React.FC = () => {
     try {
       const { accessToken, user } = await signInUserApi(data);
       setUserAndAccessToken(user, accessToken);
-      navigate(DASHBOARD_PATH);
+      navigate(jointPaths([DASHBOARD_PATH]));
     } catch (error) {
       if (
         error instanceof AxiosError &&

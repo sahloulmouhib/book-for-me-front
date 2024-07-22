@@ -6,7 +6,7 @@ export const StyledPageContainer = styled(Stack)(() => ({
   gap: distance.L,
   display: "flex",
   flex: 0.55,
-  justifyContent: "center",
+  overflow: "auto",
   alignItems: "center",
 }));
 

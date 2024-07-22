@@ -14,19 +14,22 @@ import CustomButton from "components/CustomButton/CustomButton";
 import CustomIconButton from "components/CustomIconButton/CustomIconButton";
 import CustomTextFieldInput from "components/CustomTextField/CustomTextField";
 import OrDivider from "../OrDivider/OrDivider";
-import { FieldErrors, UseFormRegister } from "react-hook-form";
+import { Control, FieldErrors, UseFormRegister } from "react-hook-form";
 import { translate } from "locales/i18n";
 import { Stack } from "@mui/material";
 import { signUpSchemaType } from "features/auth/forms/signUp.formConfig";
 import { SMALL_BOX_WIDTH } from "utils/dimensions";
 import { CustomCheckbox } from "components/CustomCheckbox/CustomCheckbox";
 
+import { USER_TYPE_RADIO_GROUP } from "features/auth/utils/auth.constants";
+import CustomIconRadioGroupForm from "components/CustomIconRadioGroupForm/CustomIconRadioGroupForm";
 interface SignInFormProps {
   register: UseFormRegister<signUpSchemaType>;
   errors: FieldErrors<signUpSchemaType>;
   isValid: boolean;
   onSubmit: () => void;
   navigateToSignIn: () => void;
+  control: Control<signUpSchemaType>;
 }
 
 export const SignUpForm: React.FC<SignInFormProps> = ({
@@ -35,9 +38,10 @@ export const SignUpForm: React.FC<SignInFormProps> = ({
   isValid,
   onSubmit,
   navigateToSignIn,
+  control,
 }) => {
   return (
-    <StyledPageContainer>
+    <StyledPageContainer spacing={"10px"}>
       <Stack>
         <StyledPageTittle>{translate("auth.sign_up.title")}</StyledPageTittle>
         <StyledPageSubtitle>
@@ -51,6 +55,12 @@ export const SignUpForm: React.FC<SignInFormProps> = ({
       />
       <OrDivider />
       <StyledRowContainer>
+        <CustomIconRadioGroupForm<signUpSchemaType>
+          control={control}
+          label={translate("auth.sign_up.user_type")}
+          name="userType"
+          radioGroup={USER_TYPE_RADIO_GROUP}
+        />
         <StyledNameContainer>
           <CustomTextFieldInput
             width={SMALL_BOX_WIDTH}
@@ -67,6 +77,7 @@ export const SignUpForm: React.FC<SignInFormProps> = ({
             errorMessage={errors.lastName?.message}
           />
         </StyledNameContainer>
+
         <CustomTextFieldInput
           label={translate("auth.sign_up.email")}
           placeholder={translate("auth.sign_up.email")}

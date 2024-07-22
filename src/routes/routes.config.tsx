@@ -12,7 +12,6 @@ import {
   SIGN_IN_PATH,
   SIGN_UP_PATH,
 } from "./routes.paths";
-import CreateCompanyStepper from "components/CreateCompanyStepper/CreateCompanyStepper";
 import Dashboard from "pages/Dashboard/Dashboard";
 export const router = createBrowserRouter([
   {

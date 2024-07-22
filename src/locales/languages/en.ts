@@ -60,6 +60,7 @@ export const en = {
       agree_to_terms: "I agree to all the Terms of Service",
       make_bookings: "Make your bookings with us !",
       start_journey: "Start your journey with us by creating an account",
+      user_type: "Register as",
       errors: {
         email_exists: "Email already exists",
       },

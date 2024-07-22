@@ -7,6 +7,7 @@ import {
 import { translate } from "locales/i18n";
 import { z } from "zod";
 import { PASSWORD_REGEX, signUpValidation } from "../utils/auth.constants";
+import { UserRoleEnum } from "utils/enums";
 
 export const signUpSchema = z
   .object({
@@ -56,6 +57,16 @@ export const signUpSchema = z
           max: MAX_STRING_LENGTH,
         })
       ),
+    userType: z
+      .number()
+      .refine(
+        (value) =>
+          value === UserRoleEnum.CompanyOwner || value === UserRoleEnum.User,
+        translate("validation.required", {
+          field: translate("auth.sign_up.user_type"),
+        })
+      )
+      .optional(),
     email: z
       .string()
       .trim()
@@ -154,6 +165,7 @@ export type signUpSchemaType = z.infer<typeof signUpSchema>;
 export const userSignUpDefaultValues: signUpSchemaType = {
   firstName: "",
   lastName: "",
+  userType: undefined,
   email: "",
   password: "",
   confirmPassword: "",

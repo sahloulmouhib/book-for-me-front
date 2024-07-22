@@ -1,5 +1,5 @@
-import { Stack, TextField, Typography, styled } from "@mui/material";
-import { borderRadius, fontSize } from "../../utils/dimensions";
+import { Stack, TextField, styled } from "@mui/material";
+import { borderRadius, distance, fontSize } from "../../utils/dimensions";
 
 export const StyledInput = styled(TextField)(({ theme }) => ({
   "& .MuiOutlinedInput-root": {
@@ -20,13 +20,12 @@ export const StyledInput = styled(TextField)(({ theme }) => ({
   width: "100%",
 }));
 
-export const StyledLabel = styled(Typography)(({ theme }) => ({
-  textAlign: "start",
-  fontWeight: "400",
-  color: theme.palette.common.black,
-  width: "100%",
-}));
-
 export const StyledStack = styled(Stack)(() => ({
   alignItems: "flex-start",
 }));
+
+export const inputStyles = {
+  padding: distance.M,
+  fontSize: fontSize.M,
+  fontWeight: "400",
+};

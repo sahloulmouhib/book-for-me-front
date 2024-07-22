@@ -2,14 +2,15 @@ import React, { useState, MouseEvent } from "react";
 import {
   StyledInput,
   StyledStack,
-  StyledLabel,
+  inputStyles,
 } from "./customTextField.styles";
-import { BOX_WIDTH, distance, fontSize, spacing } from "utils/dimensions";
+import { BOX_WIDTH, spacing } from "utils/dimensions";
 import { UseFormRegisterReturn } from "react-hook-form";
 import { InputAdornment } from "@mui/material";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import IconButton from "@mui/material/IconButton";
+import CustomFormLabel from "components/CustomFormLabel/CustomFormLabel";
 
 interface CustomTextFieldInputProps {
   label: string;
@@ -51,7 +52,7 @@ const CustomTextFieldInput: React.FC<CustomTextFieldInputProps> = ({
   };
   return (
     <StyledStack width={width} spacing={spacing.XS}>
-      <StyledLabel>{label}</StyledLabel>
+      <CustomFormLabel>{label}</CustomFormLabel>
       <StyledInput
         multiline={isMultiline}
         rows={isMultiline ? 3 : undefined}
@@ -66,11 +67,7 @@ const CustomTextFieldInput: React.FC<CustomTextFieldInputProps> = ({
         helperText={errorMessage}
         placeholder={placeholder}
         InputProps={{
-          style: {
-            padding: distance.M,
-            fontSize: fontSize.M,
-            fontWeight: "400",
-          },
+          style: inputStyles,
           endAdornment: isPassword && (
             <InputAdornment position="end">
               <IconButton

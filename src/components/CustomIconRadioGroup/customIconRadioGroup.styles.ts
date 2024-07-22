@@ -1,8 +1,7 @@
 import { Stack, styled } from "@mui/material";
+import { distance } from "utils/dimensions";
 
 export const StyledContainer = styled(Stack)(() => ({
-  flex: 1,
-  width: "100%",
   flexDirection: "row",
-  height: "100vh",
+  gap: distance.L,
 }));
