@@ -17,19 +17,19 @@ import OrDivider from "../OrDivider/OrDivider";
 import { Control, FieldErrors, UseFormRegister } from "react-hook-form";
 import { translate } from "locales/i18n";
 import { Stack } from "@mui/material";
-import { signUpSchemaType } from "features/auth/forms/signUp.formConfig";
+import { SignUpSchemaType } from "features/auth/forms/signUp.formConfig";
 import { SMALL_BOX_WIDTH } from "utils/dimensions";
 import { CustomCheckbox } from "components/CustomCheckbox/CustomCheckbox";
 
 import { USER_TYPE_RADIO_GROUP } from "features/auth/utils/auth.constants";
 import CustomIconRadioGroupForm from "components/CustomIconRadioGroupForm/CustomIconRadioGroupForm";
 interface SignInFormProps {
-  register: UseFormRegister<signUpSchemaType>;
-  errors: FieldErrors<signUpSchemaType>;
+  register: UseFormRegister<SignUpSchemaType>;
+  errors: FieldErrors<SignUpSchemaType>;
   isValid: boolean;
   onSubmit: () => void;
   navigateToSignIn: () => void;
-  control: Control<signUpSchemaType>;
+  control: Control<SignUpSchemaType>;
 }
 
 export const SignUpForm: React.FC<SignInFormProps> = ({
@@ -55,7 +55,7 @@ export const SignUpForm: React.FC<SignInFormProps> = ({
       />
       <OrDivider />
       <StyledRowContainer>
-        <CustomIconRadioGroupForm<signUpSchemaType>
+        <CustomIconRadioGroupForm<SignUpSchemaType>
           control={control}
           label={translate("auth.sign_up.user_type")}
           name="userType"

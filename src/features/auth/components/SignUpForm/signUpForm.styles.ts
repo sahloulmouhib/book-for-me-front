@@ -2,8 +2,7 @@ import { Stack, Typography, styled } from "@mui/material";
 import { BOX_WIDTH, distance, fontSize } from "utils/dimensions";
 
 export const StyledPageContainer = styled(Stack)(() => ({
-  padding: distance.XL,
-  gap: distance.L,
+  padding: distance.L,
   display: "flex",
   flex: 0.55,
   overflow: "auto",

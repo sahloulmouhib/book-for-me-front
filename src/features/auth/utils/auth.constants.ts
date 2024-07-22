@@ -21,13 +21,13 @@ export const PASSWORD_REGEX = new RegExp(
 
 export const USER_TYPE_RADIO_GROUP: CustomIconRadioButtonType[] = [
   {
-    title: "Company",
-    image: WorkIcon,
-    value: UserRoleEnum.CompanyOwner,
-  },
-  {
     title: "User",
     image: PersonRoundedIcon,
     value: UserRoleEnum.User,
+  },
+  {
+    title: "Company",
+    image: WorkIcon,
+    value: UserRoleEnum.CompanyOwner,
   },
 ];

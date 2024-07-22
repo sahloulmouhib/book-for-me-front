@@ -5,7 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { SignUpForm } from "features/auth/components/SignUpForm/SignUpForm";
 import {
-  signUpSchemaType,
+  SignUpSchemaType,
   userSignUpDefaultValues,
   signUpSchema,
 } from "features/auth/forms/signUp.formConfig";
@@ -32,14 +32,15 @@ const SignUpPage: React.FC = () => {
     mutationFn: signUpMutationFn,
   });
 
-  const { register, formState, handleSubmit, control } = useForm({
-    mode: "onChange",
-    defaultValues: userSignUpDefaultValues,
-    resolver: zodResolver(signUpSchema),
-  });
+  const { register, formState, handleSubmit, control } =
+    useForm<SignUpSchemaType>({
+      mode: "onChange",
+      defaultValues: userSignUpDefaultValues,
+      resolver: zodResolver(signUpSchema),
+    });
   const { errors, isValid } = formState;
 
-  const handleSignUp = async (data: signUpSchemaType) => {
+  const handleSignUp = async (data: SignUpSchemaType) => {
     try {
       const { accessToken, user } = await signUpUserApi(data);
       setUserAndAccessToken(user, accessToken);

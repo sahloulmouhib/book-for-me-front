@@ -17,5 +17,5 @@ export interface SignUpPayload {
   email: string;
   password: string;
   confirmPassword: string;
-  role: UserRoleEnum.User;
+  role: UserRoleEnum.User | UserRoleEnum.CompanyOwner;
 }

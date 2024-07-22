@@ -10,9 +10,9 @@ import {
 } from "../models/SignIn/signIn.transformers";
 import { SignInSchemaType } from "../forms/signIn.formConfig";
 import { HttpMethodEnum } from "api/api.enums";
-import { signUpSchemaType } from "../forms/signUp.formConfig";
+import { SignUpSchemaType } from "../forms/signUp.formConfig";
 
-export const signUpMutationFn = async (data: signUpSchemaType) => {
+export const signUpMutationFn = async (data: SignUpSchemaType) => {
   return sendAxiosRequest({
     method: HttpMethodEnum.Post,
     url: authEndpoints.SIGN_UP_USER,
