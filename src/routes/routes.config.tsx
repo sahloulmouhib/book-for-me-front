@@ -13,6 +13,7 @@ import {
   SIGN_UP_PATH,
 } from "./routes.paths";
 import Dashboard from "pages/Dashboard/Dashboard";
+import CompanyHomePage from "pages/CompanyHomePage/CompanyHomePage";
 export const router = createBrowserRouter([
   {
     path: "",
@@ -45,7 +46,7 @@ export const router = createBrowserRouter([
       },
       {
         path: HOME_PATH,
-        element: <div>Home</div>,
+        element: <CompanyHomePage />,
       },
       {
         path: BOOKINGS_PATH,

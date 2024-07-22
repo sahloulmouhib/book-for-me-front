@@ -13,7 +13,7 @@ import {
   AddCompanyDetailsSchemaType,
   addCompanyDetailsSchema,
   addCompanyDetailsDefaultValues,
-} from "features/company/forms/addCompanyDetails.formConfig";
+} from "features/company/forms/addCompanyDetails.FormConfig";
 import {
   addCompanyServiceDefaultValues,
   addCompanyServiceSchema,
