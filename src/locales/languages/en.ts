@@ -72,6 +72,8 @@ export const en = {
       description: "Description",
       image: "Logo or Image",
       upload_image: "Upload your company's logo or image",
+      creation_success: "Company created successfully",
+      creation_fail: "Failed to create company",
     },
   },
   availability: {

@@ -14,7 +14,6 @@ import {
   distance,
   fontSize,
 } from "utils/dimensions";
-// TODO: replace spacing with distance
 
 interface ToggleDrawerProps {
   open?: boolean;

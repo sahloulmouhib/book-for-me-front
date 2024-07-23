@@ -11,6 +11,7 @@ interface GlobalStoreState {
   accessToken: string | undefined;
   setUser: (user: User) => void;
   setUserAndAccessToken: (user: User, accessToken: string) => void;
+  logoutUser: () => void;
 }
 
 export const useGlobalStore = create<GlobalStoreState>()(
@@ -23,6 +24,7 @@ export const useGlobalStore = create<GlobalStoreState>()(
       accessToken: undefined,
       setUser: (user) => set({ user }),
       setUserAndAccessToken: (user, accessToken) => set({ user, accessToken }),
+      logoutUser: () => set({ user: undefined, accessToken: undefined }),
     }),
     {
       name: "global-store", // unique name

@@ -2,8 +2,8 @@ import { Box, Stack, Typography, styled } from "@mui/material";
 import { distance, fontSize } from "utils/dimensions";
 
 export const StyledContainer = styled(Box)(() => ({
-  padding: distance.XL,
-  height: 650,
+  padding: distance.M,
+  height: "calc(100vh - 180px)",
   width: 700,
   alignItems: "center",
   justifyContent: "center",
@@ -12,7 +12,8 @@ export const StyledContainer = styled(Box)(() => ({
 export const StyledButtonsContainer = styled(Stack)(() => ({
   flexDirection: "row",
   width: "100%",
-  paddingTop: distance.L,
+  paddingTop: distance.XL,
+  paddingBottom: distance.M,
 }));
 
 export const StyledButtonSeparator = styled(Box)(() => ({

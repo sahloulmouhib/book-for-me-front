@@ -20,7 +20,13 @@ import useCreateCompanyForm from "hooks/useCreateCompanyForm";
 import { translate } from "locales/i18n";
 import { STEPPER_BUTTON_WIDTH } from "utils/dimensions";
 
-const CreateCompanyStepper: React.FC = () => {
+interface CreateCompanyStepperProps {
+  onCompanyCreated: () => void;
+}
+
+const CreateCompanyStepper: React.FC<CreateCompanyStepperProps> = ({
+  onCompanyCreated,
+}) => {
   const {
     addCompanyAvailabilitiesForm,
     addCompanyDetailsForm,
@@ -29,7 +35,7 @@ const CreateCompanyStepper: React.FC = () => {
     isAddCompanyDetailsFormValid,
     isAddCompanyServicesFormValid,
     handleCreateCompany,
-  } = useCreateCompanyForm();
+  } = useCreateCompanyForm(onCompanyCreated);
 
   const steps: StepperStep[] = React.useMemo(
     () => [

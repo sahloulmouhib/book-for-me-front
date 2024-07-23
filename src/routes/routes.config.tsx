@@ -14,6 +14,7 @@ import {
 } from "./routes.paths";
 import Dashboard from "pages/Dashboard/Dashboard";
 import CompanyHomePage from "pages/CompanyHomePage/CompanyHomePage";
+import AuthGuard from "components/AuthGuard/AuthGuard";
 export const router = createBrowserRouter([
   {
     path: "",
@@ -38,7 +39,11 @@ export const router = createBrowserRouter([
   },
   {
     path: DASHBOARD_PATH,
-    element: <Dashboard />,
+    element: (
+      <AuthGuard>
+        <Dashboard />
+      </AuthGuard>
+    ),
     children: [
       {
         path: "",

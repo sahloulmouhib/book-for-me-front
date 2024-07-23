@@ -19,11 +19,12 @@ import {
   addCompanyServiceSchema,
 } from "features/service/forms/addCompanyService.fromConfig";
 import useAddCompanyServices from "features/service/hooks/useAddCompanyServices";
+import { translate } from "locales/i18n";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import { useGlobalStore } from "store/global.store";
 
-const useCreateCompanyForm = () => {
+const useCreateCompanyForm = (onCreatedCompany: () => void) => {
   const addCompanyDetailsForm = useForm<AddCompanyDetailsSchemaType>({
     mode: "onChange",
     resolver: zodResolver(addCompanyDetailsSchema),
@@ -75,11 +76,10 @@ const useCreateCompanyForm = () => {
       const companyId = result.companyId;
       const { image } = addCompanyDetailsForm.getValues();
       image && (await addCompanyImageApi({ companyId, image }));
-      // TODO: add to i18n
-      toast.success("Company created successfully");
+      onCreatedCompany();
+      toast.success(translate("company.create_company.creation_success"));
     } catch (error) {
-      // TODO: add to i18n
-      toast.error("Failed to create company");
+      toast.error(translate("company.create_company.creation_fail"));
     } finally {
       hideLoader();
     }

@@ -33,6 +33,7 @@ import {
   PROFILE_PATH,
   SERVICES_PATH,
 } from "routes/routes.paths";
+import { useGlobalStore } from "store/global.store";
 
 const DASHBOARD_ITEMS: DrawerItem[] = [
   {
@@ -64,22 +65,24 @@ const DASHBOARD_ITEMS: DrawerItem[] = [
 
 const DashBoard: React.FC = () => {
   const [open, setOpen] = React.useState(false);
-
   const handleDrawerOpen = () => {
     setOpen(true);
   };
-
   const handleDrawerClose = () => {
     setOpen(false);
   };
-
   const [selectedDrawerItemIndex, setSelectedDrawerItemIndex] = useState(0);
   const navigate = useNavigate();
-
   const handleDrawerItemClick = (index: number) => () => {
     setSelectedDrawerItemIndex(index);
     navigate(DASHBOARD_ITEMS[index].path);
   };
+
+  const { logoutUser } = useGlobalStore();
+  const onLogoutClick = () => {
+    logoutUser();
+  };
+
   return (
     <StyledContainer>
       <CssBaseline />
@@ -110,11 +113,11 @@ const DashBoard: React.FC = () => {
         </List>
         <Divider />
         <StyledListItem disablePadding>
-          <StyledListItemButton open={open}>
+          <StyledListItemButton onClick={onLogoutClick} open={open}>
             <StyledLogoutListItemIcon>
               <MeetingRoomIcon />
             </StyledLogoutListItemIcon>
-            <StyledListItemText isLogout primary={"Log out"} open={open} />
+            <StyledListItemText isLogout open={open} />
           </StyledListItemButton>
         </StyledListItem>
       </StyledDrawer>

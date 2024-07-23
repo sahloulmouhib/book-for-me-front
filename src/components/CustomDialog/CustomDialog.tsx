@@ -1,36 +1,34 @@
-import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
-import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
-import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import useCustomDialog from "hooks/useCustomDialog";
 import React from "react";
+import CloseIcon from "@mui/icons-material/Close";
+import { StyledIconButton } from "./customDialog.styles";
+import { Breakpoint } from "@mui/material";
 
 interface CustomDialogProps
-  extends Pick<ReturnType<typeof useCustomDialog>, "handleClose" | "isOpen"> {}
+  extends Pick<ReturnType<typeof useCustomDialog>, "handleClose" | "isOpen"> {
+  children: React.ReactNode;
+  title?: string;
+  maxWidth?: Breakpoint;
+}
 
-const CustomDialog: React.FC<CustomDialogProps> = ({ handleClose, isOpen }) => {
+const CustomDialog: React.FC<CustomDialogProps> = ({
+  handleClose,
+  isOpen,
+  children,
+  title,
+  maxWidth,
+}) => {
   return (
-    <>
-      <Dialog open={isOpen} onClose={handleClose}>
-        <DialogTitle id="alert-dialog-title">
-          {"Use Google's location service?"}
-        </DialogTitle>
-        <DialogContent>
-          <DialogContentText id="alert-dialog-description">
-            Let Google help apps determine location. This means sending
-            anonymous location data to Google, even when no apps are running.
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose}>Disagree</Button>
-          <Button onClick={handleClose} autoFocus>
-            Agree
-          </Button>
-        </DialogActions>
-      </Dialog>
-    </>
+    <Dialog open={isOpen} onClose={handleClose} maxWidth={maxWidth}>
+      <StyledIconButton onClick={handleClose}>
+        <CloseIcon />
+      </StyledIconButton>
+      {!!title && <DialogTitle>{title}</DialogTitle>}
+      <DialogContent>{children}</DialogContent>
+    </Dialog>
   );
 };
 
