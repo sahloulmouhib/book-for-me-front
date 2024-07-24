@@ -21,7 +21,12 @@ import { AUTH_PATH, DASHBOARD_PATH, SIGN_UP_PATH } from "routes/routes.paths";
 import { jointPaths } from "utils/helpers";
 
 const SignInPage: React.FC = () => {
-  const { showLoader, hideLoader, setUserAndAccessToken } = useGlobalStore();
+  const {
+    showLoader,
+    hideLoader,
+    setUserAndAccessToken,
+    setIsUserCompanyCreated,
+  } = useGlobalStore();
   const navigate = useNavigate();
 
   const navigateToSignUp = () => {
@@ -41,8 +46,11 @@ const SignInPage: React.FC = () => {
 
   const handleSignIn = async (data: SignInSchemaType) => {
     try {
-      const { accessToken, user } = await signInUserApi(data);
+      const { accessToken, user, isUserCompanyCreated } = await signInUserApi(
+        data
+      );
       setUserAndAccessToken(user, accessToken);
+      setIsUserCompanyCreated(isUserCompanyCreated);
       navigate(jointPaths([DASHBOARD_PATH]));
     } catch (error) {
       if (
