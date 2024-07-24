@@ -1,4 +1,3 @@
-import * as React from "react";
 import List from "@mui/material/List";
 import CssBaseline from "@mui/material/CssBaseline";
 import Divider from "@mui/material/Divider";
@@ -16,7 +15,7 @@ import {
   StyledListItemText,
   StyledLogoutListItemIcon,
 } from "./dashboard.styles";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { DrawerItem } from "utils/types";
 
 import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
@@ -29,13 +28,14 @@ import { Outlet, useNavigate } from "react-router-dom";
 import {
   BOOKINGS_PATH,
   CLIENTS_PATH,
+  COMPANIES_PATH,
   HOME_PATH,
   PROFILE_PATH,
   SERVICES_PATH,
 } from "routes/routes.paths";
 import { useGlobalStore } from "store/global.store";
 
-const DASHBOARD_ITEMS: DrawerItem[] = [
+const COMPANY_DASHBOARD_ITEMS: DrawerItem[] = [
   {
     title: "Home",
     icon: <HomeRoundedIcon />,
@@ -63,8 +63,41 @@ const DASHBOARD_ITEMS: DrawerItem[] = [
   },
 ];
 
+const CLIENT_DASHBOARD_ITEMS: DrawerItem[] = [
+  {
+    title: "Home",
+    icon: <HomeRoundedIcon />,
+    path: HOME_PATH,
+  },
+  {
+    title: "My bookings",
+    icon: <EventAvailableRoundedIcon />,
+    path: BOOKINGS_PATH,
+  },
+  {
+    title: "Companies",
+    icon: <PeopleAltSharpIcon />,
+    path: COMPANIES_PATH,
+  },
+  {
+    title: "Profile",
+    icon: <AccountCircleSharpIcon />,
+    path: PROFILE_PATH,
+  },
+];
+
 const DashBoard: React.FC = () => {
-  const [open, setOpen] = React.useState(false);
+  const { user, accessToken } = useGlobalStore();
+  const dashboardItems = useMemo(() => {
+    if (!user) {
+      return [];
+    } else if (user.isClient) {
+      return CLIENT_DASHBOARD_ITEMS;
+    } else {
+      return COMPANY_DASHBOARD_ITEMS;
+    }
+  }, [accessToken]);
+  const [open, setOpen] = useState(false);
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -75,7 +108,7 @@ const DashBoard: React.FC = () => {
   const navigate = useNavigate();
   const handleDrawerItemClick = (index: number) => () => {
     setSelectedDrawerItemIndex(index);
-    navigate(DASHBOARD_ITEMS[index].path);
+    navigate(dashboardItems[index].path);
   };
 
   const { logoutUser } = useGlobalStore();
@@ -94,7 +127,7 @@ const DashBoard: React.FC = () => {
         </StyledDrawerHeader>
         <Divider />
         <List style={{ flexGrow: 1 }}>
-          {DASHBOARD_ITEMS.map((item, index) => (
+          {dashboardItems.map((item, index) => (
             <StyledListItem key={item.title} disablePadding>
               <StyledListItemButton
                 selected={selectedDrawerItemIndex === index}

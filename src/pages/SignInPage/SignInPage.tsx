@@ -17,7 +17,12 @@ import { AxiosError } from "axios";
 import { HttpStatusCodeEnum } from "api/api.enums";
 import { toast } from "react-toastify";
 import { translate } from "locales/i18n";
-import { AUTH_PATH, DASHBOARD_PATH, SIGN_UP_PATH } from "routes/routes.paths";
+import {
+  AUTH_PATH,
+  CLIENT_DASHBOARD_PATH,
+  COMPANY_DASHBOARD_PATH,
+  SIGN_UP_PATH,
+} from "routes/routes.paths";
 import { jointPaths } from "utils/helpers";
 
 const SignInPage: React.FC = () => {
@@ -51,7 +56,11 @@ const SignInPage: React.FC = () => {
       );
       setUserAndAccessToken(user, accessToken);
       setIsUserCompanyCreated(isUserCompanyCreated);
-      navigate(jointPaths([DASHBOARD_PATH]));
+      if (user.isClient) {
+        navigate(jointPaths([CLIENT_DASHBOARD_PATH]));
+      } else {
+        navigate(jointPaths([COMPANY_DASHBOARD_PATH]));
+      }
     } catch (error) {
       if (
         error instanceof AxiosError &&

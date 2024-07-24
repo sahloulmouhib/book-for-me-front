@@ -1,3 +1,4 @@
+import { UserRoleEnum } from "utils/enums";
 import { User, UserResponse } from "./user.types";
 
 export const decodeUser = (response: UserResponse): User => {
@@ -7,5 +8,6 @@ export const decodeUser = (response: UserResponse): User => {
     lastName: response.lastName,
     email: response.email,
     role: response.role,
+    isClient: response.role === UserRoleEnum.Client,
   };
 };

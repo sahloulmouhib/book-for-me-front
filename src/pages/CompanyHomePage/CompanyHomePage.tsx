@@ -9,7 +9,7 @@ interface CompanyHomePageProps {}
 const CompanyHomePage: React.FC<CompanyHomePageProps> = () => {
   const { isUserCompanyCreated, user } = useGlobalStore();
 
-  if (user?.role !== UserRoleEnum.User) {
+  if (user?.role !== UserRoleEnum.Client) {
     if (isUserCompanyCreated) {
       return <div>Bookings</div>;
     } else {

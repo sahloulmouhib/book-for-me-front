@@ -17,7 +17,12 @@ import { AxiosError } from "axios";
 import { HttpStatusCodeEnum } from "api/api.enums";
 import { translate } from "locales/i18n";
 import { useGlobalStore } from "store/global.store";
-import { AUTH_PATH, DASHBOARD_PATH, SIGN_IN_PATH } from "routes/routes.paths";
+import {
+  AUTH_PATH,
+  CLIENT_DASHBOARD_PATH,
+  COMPANY_DASHBOARD_PATH,
+  SIGN_IN_PATH,
+} from "routes/routes.paths";
 import { jointPaths } from "utils/helpers";
 
 const SignUpPage: React.FC = () => {
@@ -44,7 +49,11 @@ const SignUpPage: React.FC = () => {
     try {
       const { accessToken, user } = await signUpUserApi(data);
       setUserAndAccessToken(user, accessToken);
-      navigate(jointPaths([DASHBOARD_PATH]));
+      if (user.isClient) {
+        navigate(jointPaths([CLIENT_DASHBOARD_PATH]));
+      } else {
+        navigate(jointPaths([COMPANY_DASHBOARD_PATH]));
+      }
     } catch (error) {
       if (
         error instanceof AxiosError &&

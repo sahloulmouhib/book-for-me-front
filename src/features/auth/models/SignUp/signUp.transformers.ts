@@ -17,6 +17,6 @@ export const encodeSignUp = (data: SignUpSchemaType): SignUpPayload => {
     email: data.email,
     password: data.password,
     confirmPassword: data.confirmPassword,
-    role: data.userType ?? UserRoleEnum.User,
+    role: data.userType ?? UserRoleEnum.Client,
   };
 };

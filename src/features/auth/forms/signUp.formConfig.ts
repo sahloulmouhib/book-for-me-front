@@ -59,7 +59,7 @@ export const signUpSchema = z
       ),
     userType: z.number().refine(
       (value) =>
-        value === UserRoleEnum.CompanyOwner || value === UserRoleEnum.User,
+        value === UserRoleEnum.CompanyOwner || value === UserRoleEnum.Client,
       translate("validation.required", {
         field: translate("auth.sign_up.user_type"),
       })

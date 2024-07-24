@@ -23,7 +23,7 @@ export const USER_TYPE_RADIO_GROUP: CustomIconRadioButtonType[] = [
   {
     title: "User",
     image: PersonRoundedIcon,
-    value: UserRoleEnum.User,
+    value: UserRoleEnum.Client,
   },
   {
     title: "Company",

@@ -6,6 +6,7 @@ export interface User {
   lastName: string;
   email: string;
   role: UserRoleEnum;
+  isClient: boolean;
 }
 
 export interface UserResponse {
