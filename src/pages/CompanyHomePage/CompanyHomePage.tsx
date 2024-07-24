@@ -14,6 +14,7 @@ import {
 } from "./companyHomePage.styles";
 import { useGlobalStore } from "store/global.store";
 import { capitalizeFirstLetter } from "utils/helpers";
+import { translate } from "locales/i18n";
 
 interface CompanyHomePageProps {}
 
@@ -28,13 +29,18 @@ const CompanyHomePage: React.FC<CompanyHomePageProps> = () => {
       </CustomDialog>
       <StyledImage src={images.LAUNCH} />
       <StyledTextContainer>
-        <StyledTitle>Welcome {userName}</StyledTitle>
+        <StyledTitle>
+          {translate("company.no_company.title", { name: userName })}
+        </StyledTitle>
         <StyledDescription>
-          Start your journey by creating your company profile and start managing
-          your services and availabilities in one place.
+          {translate("company.no_company.description")}
         </StyledDescription>
       </StyledTextContainer>
-      <CustomButton width={150} title="Start" onClick={handleOpen} />
+      <CustomButton
+        width={150}
+        title={translate("company.no_company.button_title")}
+        onClick={handleOpen}
+      />
     </StyledContainer>
   );
 };

@@ -75,6 +75,12 @@ export const en = {
       creation_success: "Company created successfully",
       creation_fail: "Failed to create company",
     },
+    no_company: {
+      title: "Welcome {{name}}",
+      description:
+        "Start your journey by creating your company profile and start managing your services and availabilities in one place.",
+      button_title: "Start",
+    },
   },
   availability: {
     from: "From",

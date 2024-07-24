@@ -1,8 +1,14 @@
 import { SignInSchemaType } from "features/auth/forms/signIn.formConfig";
-import { decodeSignUp } from "../SignUp/signUp.transformers";
-import { SignInPayload } from "./signIn.types";
+import { SignIn, SignInPayload, SignInResponse } from "./signIn.types";
+import { decodeUser } from "../User/user.transformers";
 
-export const decodeSignIn = decodeSignUp;
+export const decodeSignIn = (response: SignInResponse): SignIn => {
+  return {
+    user: decodeUser(response.user),
+    accessToken: response.accessToken,
+    isUserCompanyCreated: response.isUserCompanyCreated,
+  };
+};
 
 export const encodeSignIn = (data: SignInSchemaType): SignInPayload => {
   return {

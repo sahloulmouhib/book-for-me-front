@@ -1,4 +1,4 @@
-import { createBrowserRouter, Navigate } from "react-router-dom";
+import { createBrowserRouter, Navigate, RouteObject } from "react-router-dom";
 import SignInPage from "pages/SignInPage/SignInPage";
 import SignUpPage from "pages/SignUpPage/SignUpPage";
 import {
@@ -15,27 +15,31 @@ import {
 import Dashboard from "pages/Dashboard/Dashboard";
 import CompanyHomePage from "pages/CompanyHomePage/CompanyHomePage";
 import AuthGuard from "components/AuthGuard/AuthGuard";
+const authRouteObject: RouteObject = {
+  path: AUTH_PATH,
+  children: [
+    {
+      path: "",
+      element: <Navigate to={SIGN_IN_PATH} />,
+    },
+    {
+      path: SIGN_IN_PATH,
+      element: <SignInPage />,
+    },
+    {
+      path: SIGN_UP_PATH,
+      element: <SignUpPage />,
+    },
+  ],
+};
+
 export const router = createBrowserRouter([
   {
     path: "",
     element: <Navigate to={AUTH_PATH} />,
   },
   {
-    path: AUTH_PATH,
-    children: [
-      {
-        path: "",
-        element: <Navigate to={SIGN_IN_PATH} />,
-      },
-      {
-        path: SIGN_IN_PATH,
-        element: <SignInPage />,
-      },
-      {
-        path: SIGN_UP_PATH,
-        element: <SignUpPage />,
-      },
-    ],
+    ...authRouteObject,
   },
   {
     path: DASHBOARD_PATH,
